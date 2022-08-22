@@ -1,0 +1,6030 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract ERC20",
+          "name": "_tokenX",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "totalFee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "period",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isYes",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "isAbove",
+          "type": "bool"
+        },
+        {
+          "internalType": "address",
+          "name": "referrer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
+        }
+      ],
+      "name": "createFor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "optionID",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "optionsContract",
+      "outputs": [
+        {
+          "internalType": "contract IBufferBinaryOptions",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "tokenX",
+      "outputs": [
+        {
+          "internalType": "contract ERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "15": "/home/lenovo/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2/contracts/utils/Context.sol",
+    "24": "contracts/Binary ATM Options/InterfacesBinary.sol",
+    "26": "contracts/Binary ATM Options/Router.sol",
+    "3": "/home/lenovo/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2/contracts/security/ReentrancyGuard.sol",
+    "4": "/home/lenovo/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2/contracts/token/ERC20/ERC20.sol",
+    "5": "/home/lenovo/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2/contracts/token/ERC20/IERC20.sol",
+    "6": "/home/lenovo/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2/contracts/token/ERC20/extensions/IERC20Metadata.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/Binary ATM Options/Router.sol",
+    "exportedSymbols": {
+      "Context": [
+        27702
+      ],
+      "ERC20": [
+        19324
+      ],
+      "IBufferBinaryOptions": [
+        3848
+      ],
+      "IBufferOptions": [
+        3907
+      ],
+      "IERC20": [
+        27780
+      ],
+      "IERC20Metadata": [
+        27805
+      ],
+      "ILiquidityPool": [
+        4023
+      ],
+      "IOptionsConfig": [
+        4082
+      ],
+      "IPriceProvider": [
+        4121
+      ],
+      "ReentrancyGuard": [
+        18778
+      ],
+      "Router": [
+        4599
+      ]
+    },
+    "id": 4600,
+    "license": "BUSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4510,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:26"
+      },
+      {
+        "absolutePath": "/home/lenovo/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2/contracts/security/ReentrancyGuard.sol",
+        "file": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
+        "id": 4511,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 4600,
+        "sourceUnit": 18779,
+        "src": "63:62:26",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/lenovo/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2/contracts/token/ERC20/ERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "id": 4512,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 4600,
+        "sourceUnit": 19325,
+        "src": "126:55:26",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "contracts/Binary ATM Options/InterfacesBinary.sol",
+        "file": "./InterfacesBinary.sol",
+        "id": 4513,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 4600,
+        "sourceUnit": 4122,
+        "src": "182:32:26",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 4515,
+              "name": "ReentrancyGuard",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 18778,
+              "src": "368:15:26"
+            },
+            "id": 4516,
+            "nodeType": "InheritanceSpecifier",
+            "src": "368:15:26"
+          }
+        ],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 4514,
+          "nodeType": "StructuredDocumentation",
+          "src": "216:132:26",
+          "text": " @author Heisenberg\n @title Buffer TokenX Bidirectional (Call and Put) Options\n @notice Buffer TokenX Options Contract"
+        },
+        "fullyImplemented": true,
+        "id": 4599,
+        "linearizedBaseContracts": [
+          4599,
+          18778
+        ],
+        "name": "Router",
+        "nameLocation": "358:6:26",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "16dc165b",
+            "id": 4519,
+            "mutability": "mutable",
+            "name": "tokenX",
+            "nameLocation": "403:6:26",
+            "nodeType": "VariableDeclaration",
+            "scope": 4599,
+            "src": "390:19:26",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_ERC20_$19324",
+              "typeString": "contract ERC20"
+            },
+            "typeName": {
+              "id": 4518,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 4517,
+                "name": "ERC20",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 19324,
+                "src": "390:5:26"
+              },
+              "referencedDeclaration": 19324,
+              "src": "390:5:26",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC20_$19324",
+                "typeString": "contract ERC20"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "0328c393",
+            "id": 4522,
+            "mutability": "mutable",
+            "name": "optionsContract",
+            "nameLocation": "443:15:26",
+            "nodeType": "VariableDeclaration",
+            "scope": 4599,
+            "src": "415:43:26",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IBufferBinaryOptions_$3848",
+              "typeString": "contract IBufferBinaryOptions"
+            },
+            "typeName": {
+              "id": 4521,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 4520,
+                "name": "IBufferBinaryOptions",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 3848,
+                "src": "415:20:26"
+              },
+              "referencedDeclaration": 3848,
+              "src": "415:20:26",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IBufferBinaryOptions_$3848",
+                "typeString": "contract IBufferBinaryOptions"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4532,
+              "nodeType": "Block",
+              "src": "492:33:26",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 4530,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 4528,
+                      "name": "tokenX",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4519,
+                      "src": "502:6:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ERC20_$19324",
+                        "typeString": "contract ERC20"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 4529,
+                      "name": "_tokenX",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4525,
+                      "src": "511:7:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ERC20_$19324",
+                        "typeString": "contract ERC20"
+                      }
+                    },
+                    "src": "502:16:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ERC20_$19324",
+                      "typeString": "contract ERC20"
+                    }
+                  },
+                  "id": 4531,
+                  "nodeType": "ExpressionStatement",
+                  "src": "502:16:26"
+                }
+              ]
+            },
+            "id": 4533,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4526,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4525,
+                  "mutability": "mutable",
+                  "name": "_tokenX",
+                  "nameLocation": "483:7:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4533,
+                  "src": "477:13:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ERC20_$19324",
+                    "typeString": "contract ERC20"
+                  },
+                  "typeName": {
+                    "id": 4524,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 4523,
+                      "name": "ERC20",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 19324,
+                      "src": "477:5:26"
+                    },
+                    "referencedDeclaration": 19324,
+                    "src": "477:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ERC20_$19324",
+                      "typeString": "contract ERC20"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "476:15:26"
+            },
+            "returnParameters": {
+              "id": 4527,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "492:0:26"
+            },
+            "scope": 4599,
+            "src": "465:60:26",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4597,
+              "nodeType": "Block",
+              "src": "852:642:26",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 4557,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 4553,
+                      "name": "optionsContract",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4522,
+                      "src": "862:15:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IBufferBinaryOptions_$3848",
+                        "typeString": "contract IBufferBinaryOptions"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 4555,
+                          "name": "contractAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4546,
+                          "src": "901:15:26",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 4554,
+                        "name": "IBufferBinaryOptions",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3848,
+                        "src": "880:20:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_IBufferBinaryOptions_$3848_$",
+                          "typeString": "type(contract IBufferBinaryOptions)"
+                        }
+                      },
+                      "id": 4556,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "880:37:26",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IBufferBinaryOptions_$3848",
+                        "typeString": "contract IBufferBinaryOptions"
+                      }
+                    },
+                    "src": "862:55:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IBufferBinaryOptions_$3848",
+                      "typeString": "contract IBufferBinaryOptions"
+                    }
+                  },
+                  "id": 4558,
+                  "nodeType": "ExpressionStatement",
+                  "src": "862:55:26"
+                },
+                {
+                  "assignments": [
+                    4560,
+                    4562
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4560,
+                      "mutability": "mutable",
+                      "name": "strike",
+                      "nameLocation": "936:6:26",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4597,
+                      "src": "928:14:26",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 4559,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "928:7:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    },
+                    {
+                      "constant": false,
+                      "id": 4562,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "nameLocation": "952:6:26",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4597,
+                      "src": "944:14:26",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 4561,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "944:7:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4573,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 4565,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -15,
+                          "src": "1003:3:26",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 4566,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1003:10:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 4567,
+                        "name": "totalFee",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4536,
+                        "src": "1027:8:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 4568,
+                        "name": "period",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4538,
+                        "src": "1049:6:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 4569,
+                        "name": "isYes",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4540,
+                        "src": "1069:5:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "id": 4570,
+                        "name": "isAbove",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4542,
+                        "src": "1088:7:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "id": 4571,
+                        "name": "referrer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4544,
+                        "src": "1109:8:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "id": 4563,
+                        "name": "optionsContract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4522,
+                        "src": "962:15:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IBufferBinaryOptions_$3848",
+                          "typeString": "contract IBufferBinaryOptions"
+                        }
+                      },
+                      "id": 4564,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "checkParams",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3788,
+                      "src": "962:27:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$_t_uint256_$_t_bool_$_t_bool_$_t_address_$returns$_t_uint256_$_t_uint256_$",
+                        "typeString": "function (address,uint256,uint256,bool,bool,address) external returns (uint256,uint256)"
+                      }
+                    },
+                    "id": 4572,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "962:165:26",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                      "typeString": "tuple(uint256,uint256)"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "927:200:26"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 4577,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -15,
+                          "src": "1228:3:26",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 4578,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1228:10:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 4579,
+                        "name": "contractAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4546,
+                        "src": "1240:15:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 4580,
+                        "name": "totalFee",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4536,
+                        "src": "1257:8:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 4574,
+                        "name": "tokenX",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4519,
+                        "src": "1208:6:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_ERC20_$19324",
+                          "typeString": "contract ERC20"
+                        }
+                      },
+                      "id": 4576,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transferFrom",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 18985,
+                      "src": "1208:19:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
+                        "typeString": "function (address,address,uint256) external returns (bool)"
+                      }
+                    },
+                    "id": 4581,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1208:58:26",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 4582,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1208:58:26"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 4586,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -15,
+                          "src": "1323:3:26",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 4587,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1323:10:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 4588,
+                        "name": "totalFee",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4536,
+                        "src": "1347:8:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 4589,
+                        "name": "period",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4538,
+                        "src": "1369:6:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 4590,
+                        "name": "isYes",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4540,
+                        "src": "1389:5:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "id": 4591,
+                        "name": "isAbove",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4542,
+                        "src": "1408:7:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "id": 4592,
+                        "name": "referrer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4544,
+                        "src": "1429:8:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 4593,
+                        "name": "strike",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4560,
+                        "src": "1451:6:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 4594,
+                        "name": "amount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4562,
+                        "src": "1471:6:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 4583,
+                        "name": "optionsContract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4522,
+                        "src": "1277:15:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IBufferBinaryOptions_$3848",
+                          "typeString": "contract IBufferBinaryOptions"
+                        }
+                      },
+                      "id": 4585,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "createFromRouter",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3769,
+                      "src": "1277:32:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$_t_uint256_$_t_bool_$_t_bool_$_t_address_$_t_uint256_$_t_uint256_$returns$_t_uint256_$",
+                        "typeString": "function (address,uint256,uint256,bool,bool,address,uint256,uint256) external returns (uint256)"
+                      }
+                    },
+                    "id": 4595,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1277:210:26",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 4596,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1277:210:26"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 4534,
+              "nodeType": "StructuredDocumentation",
+              "src": "531:91:26",
+              "text": " @notice Creates a new option\n @return optionID Created option's ID"
+            },
+            "functionSelector": "6ee77855",
+            "id": 4598,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 4549,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 4548,
+                  "name": "nonReentrant",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 18777,
+                  "src": "812:12:26"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "812:12:26"
+              }
+            ],
+            "name": "createFor",
+            "nameLocation": "636:9:26",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4547,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4536,
+                  "mutability": "mutable",
+                  "name": "totalFee",
+                  "nameLocation": "663:8:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4598,
+                  "src": "655:16:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4535,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "655:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4538,
+                  "mutability": "mutable",
+                  "name": "period",
+                  "nameLocation": "689:6:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4598,
+                  "src": "681:14:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4537,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "681:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4540,
+                  "mutability": "mutable",
+                  "name": "isYes",
+                  "nameLocation": "710:5:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4598,
+                  "src": "705:10:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4539,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "705:4:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4542,
+                  "mutability": "mutable",
+                  "name": "isAbove",
+                  "nameLocation": "730:7:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4598,
+                  "src": "725:12:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4541,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "725:4:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4544,
+                  "mutability": "mutable",
+                  "name": "referrer",
+                  "nameLocation": "755:8:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4598,
+                  "src": "747:16:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4543,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "747:7:26",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4546,
+                  "mutability": "mutable",
+                  "name": "contractAddress",
+                  "nameLocation": "781:15:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4598,
+                  "src": "773:23:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4545,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "773:7:26",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "645:157:26"
+            },
+            "returnParameters": {
+              "id": 4552,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4551,
+                  "mutability": "mutable",
+                  "name": "optionID",
+                  "nameLocation": "842:8:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4598,
+                  "src": "834:16:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4550,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "834:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "833:18:26"
+            },
+            "scope": 4599,
+            "src": "627:867:26",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4600,
+        "src": "349:1147:26",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:1497:26"
+  },
+  "bytecode": "608060405234801561001057600080fd5b506040516104d73803806104d783398101604081905261002f91610059565b6001600081905580546001600160a01b0319166001600160a01b0392909216919091179055610087565b60006020828403121561006a578081fd5b81516001600160a01b0381168114610080578182fd5b9392505050565b610441806100966000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630328c3931461004657806316dc165b146100765780636ee7785514610089575b600080fd5b600254610059906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b600154610059906001600160a01b031681565b61009c610097366004610391565b6100aa565b60405190815260200161006d565b6000600260005414156101035760405162461bcd60e51b815260206004820152601f60248201527f5265656e7472616e637947756172643a207265656e7472616e742063616c6c00604482015260640160405180910390fd5b6002600081815581546001600160a01b0319166001600160a01b03858116918217909355604051631d85709d60e31b8152336004820152602481018b9052604481018a90528815156064820152871515608482015292861660a4840152909182919063ec2b84e89060c4016040805180830381600087803b15801561018757600080fd5b505af115801561019b573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101bf919061036e565b6001546040516323b872dd60e01b81523360048201526001600160a01b038881166024830152604482018e905293955091935091909116906323b872dd90606401602060405180830381600087803b15801561021a57600080fd5b505af115801561022e573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102529190610333565b5060025460405163040be85960e31b8152336004820152602481018b9052604481018a9052881515606482015287151560848201526001600160a01b0387811660a483015260c4820185905260e482018490529091169063205f42c89061010401602060405180830381600087803b1580156102cd57600080fd5b505af11580156102e1573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103059190610356565b50506001600055509695505050505050565b80356001600160a01b038116811461032e57600080fd5b919050565b600060208284031215610344578081fd5b815161034f816103fa565b9392505050565b600060208284031215610367578081fd5b5051919050565b60008060408385031215610380578081fd5b505080516020909101519092909150565b60008060008060008060c087890312156103a9578182fd5b863595506020870135945060408701356103c2816103fa565b935060608701356103d2816103fa565b92506103e060808801610317565b91506103ee60a08801610317565b90509295509295509295565b801515811461040857600080fd5b5056fea2646970667358221220035d5fd0bd0236c47e9df859e0ae6c55109fff3b7e57a22393a4601812c7805b64736f6c63430008040033",
+  "bytecodeSha1": "c8de6552333b12002e54a8f7983b8afb2aff483f",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 1
+    },
+    "version": "0.8.4+commit.c7e474f2"
+  },
+  "contractName": "Router",
+  "coverageMap": {
+    "branches": {
+      "15": {},
+      "24": {},
+      "26": {},
+      "3": {
+        "Router.createFor": {
+          "3": [
+            2259,
+            2278,
+            true
+          ]
+        }
+      },
+      "4": {},
+      "5": {},
+      "6": {}
+    },
+    "statements": {
+      "15": {},
+      "24": {},
+      "26": {
+        "Router.createFor": {
+          "0": [
+            862,
+            917
+          ],
+          "1": [
+            1208,
+            1266
+          ],
+          "2": [
+            1277,
+            1487
+          ]
+        }
+      },
+      "3": {},
+      "4": {},
+      "5": {},
+      "6": {}
+    }
+  },
+  "dependencies": [
+    "OpenZeppelin/openzeppelin-contracts@4.3.2/Context",
+    "OpenZeppelin/openzeppelin-contracts@4.3.2/ERC20",
+    "IBufferBinaryOptions",
+    "OpenZeppelin/openzeppelin-contracts@4.3.2/IERC20",
+    "OpenZeppelin/openzeppelin-contracts@4.3.2/IERC20Metadata",
+    "OpenZeppelin/openzeppelin-contracts@4.3.2/ReentrancyGuard"
+  ],
+  "deployedBytecode": "608060405234801561001057600080fd5b50600436106100415760003560e01c80630328c3931461004657806316dc165b146100765780636ee7785514610089575b600080fd5b600254610059906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b600154610059906001600160a01b031681565b61009c610097366004610391565b6100aa565b60405190815260200161006d565b6000600260005414156101035760405162461bcd60e51b815260206004820152601f60248201527f5265656e7472616e637947756172643a207265656e7472616e742063616c6c00604482015260640160405180910390fd5b6002600081815581546001600160a01b0319166001600160a01b03858116918217909355604051631d85709d60e31b8152336004820152602481018b9052604481018a90528815156064820152871515608482015292861660a4840152909182919063ec2b84e89060c4016040805180830381600087803b15801561018757600080fd5b505af115801561019b573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101bf919061036e565b6001546040516323b872dd60e01b81523360048201526001600160a01b038881166024830152604482018e905293955091935091909116906323b872dd90606401602060405180830381600087803b15801561021a57600080fd5b505af115801561022e573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102529190610333565b5060025460405163040be85960e31b8152336004820152602481018b9052604481018a9052881515606482015287151560848201526001600160a01b0387811660a483015260c4820185905260e482018490529091169063205f42c89061010401602060405180830381600087803b1580156102cd57600080fd5b505af11580156102e1573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103059190610356565b50506001600055509695505050505050565b80356001600160a01b038116811461032e57600080fd5b919050565b600060208284031215610344578081fd5b815161034f816103fa565b9392505050565b600060208284031215610367578081fd5b5051919050565b60008060408385031215610380578081fd5b505080516020909101519092909150565b60008060008060008060c087890312156103a9578182fd5b863595506020870135945060408701356103c2816103fa565b935060608701356103d2816103fa565b92506103e060808801610317565b91506103ee60a08801610317565b90509295509295509295565b801515811461040857600080fd5b5056fea2646970667358221220035d5fd0bd0236c47e9df859e0ae6c55109fff3b7e57a22393a4601812c7805b64736f6c63430008040033",
+  "deployedSourceMap": "349:1147:26:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;415:43;;;;;-1:-1:-1;;;;;415:43:26;;;;;;-1:-1:-1;;;;;3524:32:49;;;3506:51;;3494:2;3479:18;415:43:26;;;;;;;;390:19;;;;;-1:-1:-1;;;;;390:19:26;;;627:867;;;;;;:::i;:::-;;:::i;:::-;;;4311:25:49;;;4299:2;4284:18;627:867:26;4266:76:49;627:867:26;834:16;1680:1:3;2259:7;;:19;;2251:63;;;;-1:-1:-1;;;2251:63:3;;4007:2:49;2251:63:3;;;3989:21:49;4046:2;4026:18;;;4019:30;4085:33;4065:18;;;4058:61;4136:18;;2251:63:3;;;;;;;;1680:1;2389:7;:18;;;862:55:26;;-1:-1:-1;;;;;;862:55:26::1;-1:-1:-1::0;;;;;862:55:26;;::::1;::::0;;::::1;::::0;;;962:165:::1;::::0;-1:-1:-1;;;962:165:26;;1003:10:::1;962:165;::::0;::::1;2282:34:49::0;2332:18;;;2325:34;;;2375:18;;;2368:34;;;2445:14;;2438:22;2418:18;;;2411:50;2505:14;;2498:22;2477:19;;;2470:51;2558:15;;;2537:19;;;2530:44;2389:7:3;;;;862:55:26;962:27:::1;::::0;2216:19:49;;962:165:26::1;::::0;::::1;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1208:6;::::0;:58:::1;::::0;-1:-1:-1;;;1208:58:26;;1228:10:::1;1208:58;::::0;::::1;1829:34:49::0;-1:-1:-1;;;;;1899:15:49;;;1879:18;;;1872:43;1931:18;;;1924:34;;;927:200:26;;-1:-1:-1;927:200:26;;-1:-1:-1;1208:6:26;;;::::1;::::0;:19:::1;::::0;1764:18:49;;1208:58:26::1;;;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;-1:-1:-1::0;1277:15:26::1;::::0;:210:::1;::::0;-1:-1:-1;;;1277:210:26;;1323:10:::1;1277:210;::::0;::::1;2954:34:49::0;3004:18;;;2997:34;;;3047:18;;;3040:34;;;3117:14;;3110:22;3090:18;;;3083:50;3177:14;;3170:22;3149:19;;;3142:51;-1:-1:-1;;;;;3230:15:49;;;3209:19;;;3202:44;3262:19;;;3255:35;;;3306:19;;;3299:35;;;1277:15:26;;::::1;::::0;:32:::1;::::0;2888:19:49;;1277:210:26::1;;;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;-1:-1:-1::0;;1637:1:3;2562:7;:22;-1:-1:-1;627:867:26;;-1:-1:-1;;;;;;627:867:26:o;14:173:49:-;82:20;;-1:-1:-1;;;;;131:31:49;;121:42;;111:2;;177:1;174;167:12;111:2;63:124;;;:::o;192:255::-;259:6;312:2;300:9;291:7;287:23;283:32;280:2;;;333:6;325;318:22;280:2;370:9;364:16;389:28;411:5;389:28;:::i;:::-;436:5;270:177;-1:-1:-1;;;270:177:49:o;452:194::-;522:6;575:2;563:9;554:7;550:23;546:32;543:2;;;596:6;588;581:22;543:2;-1:-1:-1;624:16:49;;533:113;-1:-1:-1;533:113:49:o;651:255::-;730:6;738;791:2;779:9;770:7;766:23;762:32;759:2;;;812:6;804;797:22;759:2;-1:-1:-1;;840:16:49;;896:2;881:18;;;875:25;840:16;;875:25;;-1:-1:-1;749:157:49:o;911:673::-;1009:6;1017;1025;1033;1041;1049;1102:3;1090:9;1081:7;1077:23;1073:33;1070:2;;;1124:6;1116;1109:22;1070:2;1165:9;1152:23;1142:33;;1222:2;1211:9;1207:18;1194:32;1184:42;;1276:2;1265:9;1261:18;1248:32;1289:28;1311:5;1289:28;:::i;:::-;1336:5;-1:-1:-1;1393:2:49;1378:18;;1365:32;1406:30;1365:32;1406:30;:::i;:::-;1455:7;-1:-1:-1;1481:39:49;1515:3;1500:19;;1481:39;:::i;:::-;1471:49;;1539:39;1573:3;1562:9;1558:19;1539:39;:::i;:::-;1529:49;;1060:524;;;;;;;;:::o;4347:118::-;4433:5;4426:13;4419:21;4412:5;4409:32;4399:2;;4455:1;4452;4445:12;4399:2;4389:76;:::o",
+  "language": "Solidity",
+  "natspec": {
+    "author": "Heisenberg",
+    "kind": "dev",
+    "methods": {
+      "createFor(uint256,uint256,bool,bool,address,address)": {
+        "notice": "Creates a new option",
+        "returns": {
+          "optionID": "Created option's ID"
+        }
+      }
+    },
+    "notice": "Buffer TokenX Options Contract",
+    "title": "Buffer TokenX Bidirectional (Call and Put) Options",
+    "version": 1
+  },
+  "offset": [
+    349,
+    1496
+  ],
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x41 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x328C393 EQ PUSH2 0x46 JUMPI DUP1 PUSH4 0x16DC165B EQ PUSH2 0x76 JUMPI DUP1 PUSH4 0x6EE77855 EQ PUSH2 0x89 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x2 SLOAD PUSH2 0x59 SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP2 AND DUP2 MSTORE PUSH1 0x20 ADD JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH1 0x1 SLOAD PUSH2 0x59 SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH2 0x9C PUSH2 0x97 CALLDATASIZE PUSH1 0x4 PUSH2 0x391 JUMP JUMPDEST PUSH2 0xAA JUMP JUMPDEST PUSH1 0x40 MLOAD SWAP1 DUP2 MSTORE PUSH1 0x20 ADD PUSH2 0x6D JUMP JUMPDEST PUSH1 0x0 PUSH1 0x2 PUSH1 0x0 SLOAD EQ ISZERO PUSH2 0x103 JUMPI PUSH1 0x40 MLOAD PUSH3 0x461BCD PUSH1 0xE5 SHL DUP2 MSTORE PUSH1 0x20 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x1F PUSH1 0x24 DUP3 ADD MSTORE PUSH32 0x5265656E7472616E637947756172643A207265656E7472616E742063616C6C00 PUSH1 0x44 DUP3 ADD MSTORE PUSH1 0x64 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 REVERT JUMPDEST PUSH1 0x2 PUSH1 0x0 DUP2 DUP2 SSTORE DUP2 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB NOT AND PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP6 DUP2 AND SWAP2 DUP3 OR SWAP1 SWAP4 SSTORE PUSH1 0x40 MLOAD PUSH4 0x1D85709D PUSH1 0xE3 SHL DUP2 MSTORE CALLER PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x24 DUP2 ADD DUP12 SWAP1 MSTORE PUSH1 0x44 DUP2 ADD DUP11 SWAP1 MSTORE DUP9 ISZERO ISZERO PUSH1 0x64 DUP3 ADD MSTORE DUP8 ISZERO ISZERO PUSH1 0x84 DUP3 ADD MSTORE SWAP3 DUP7 AND PUSH1 0xA4 DUP5 ADD MSTORE SWAP1 SWAP2 DUP3 SWAP2 SWAP1 PUSH4 0xEC2B84E8 SWAP1 PUSH1 0xC4 ADD PUSH1 0x40 DUP1 MLOAD DUP1 DUP4 SUB DUP2 PUSH1 0x0 DUP8 DUP1 EXTCODESIZE ISZERO DUP1 ISZERO PUSH2 0x187 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP GAS CALL ISZERO DUP1 ISZERO PUSH2 0x19B JUMPI RETURNDATASIZE PUSH1 0x0 DUP1 RETURNDATACOPY RETURNDATASIZE PUSH1 0x0 REVERT JUMPDEST POP POP POP POP PUSH1 0x40 MLOAD RETURNDATASIZE PUSH1 0x1F NOT PUSH1 0x1F DUP3 ADD AND DUP3 ADD DUP1 PUSH1 0x40 MSTORE POP DUP2 ADD SWAP1 PUSH2 0x1BF SWAP2 SWAP1 PUSH2 0x36E JUMP JUMPDEST PUSH1 0x1 SLOAD PUSH1 0x40 MLOAD PUSH4 0x23B872DD PUSH1 0xE0 SHL DUP2 MSTORE CALLER PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP9 DUP2 AND PUSH1 0x24 DUP4 ADD MSTORE PUSH1 0x44 DUP3 ADD DUP15 SWAP1 MSTORE SWAP4 SWAP6 POP SWAP2 SWAP4 POP SWAP2 SWAP1 SWAP2 AND SWAP1 PUSH4 0x23B872DD SWAP1 PUSH1 0x64 ADD PUSH1 0x20 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 PUSH1 0x0 DUP8 DUP1 EXTCODESIZE ISZERO DUP1 ISZERO PUSH2 0x21A JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP GAS CALL ISZERO DUP1 ISZERO PUSH2 0x22E JUMPI RETURNDATASIZE PUSH1 0x0 DUP1 RETURNDATACOPY RETURNDATASIZE PUSH1 0x0 REVERT JUMPDEST POP POP POP POP PUSH1 0x40 MLOAD RETURNDATASIZE PUSH1 0x1F NOT PUSH1 0x1F DUP3 ADD AND DUP3 ADD DUP1 PUSH1 0x40 MSTORE POP DUP2 ADD SWAP1 PUSH2 0x252 SWAP2 SWAP1 PUSH2 0x333 JUMP JUMPDEST POP PUSH1 0x2 SLOAD PUSH1 0x40 MLOAD PUSH4 0x40BE859 PUSH1 0xE3 SHL DUP2 MSTORE CALLER PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x24 DUP2 ADD DUP12 SWAP1 MSTORE PUSH1 0x44 DUP2 ADD DUP11 SWAP1 MSTORE DUP9 ISZERO ISZERO PUSH1 0x64 DUP3 ADD MSTORE DUP8 ISZERO ISZERO PUSH1 0x84 DUP3 ADD MSTORE PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP8 DUP2 AND PUSH1 0xA4 DUP4 ADD MSTORE PUSH1 0xC4 DUP3 ADD DUP6 SWAP1 MSTORE PUSH1 0xE4 DUP3 ADD DUP5 SWAP1 MSTORE SWAP1 SWAP2 AND SWAP1 PUSH4 0x205F42C8 SWAP1 PUSH2 0x104 ADD PUSH1 0x20 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 PUSH1 0x0 DUP8 DUP1 EXTCODESIZE ISZERO DUP1 ISZERO PUSH2 0x2CD JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP GAS CALL ISZERO DUP1 ISZERO PUSH2 0x2E1 JUMPI RETURNDATASIZE PUSH1 0x0 DUP1 RETURNDATACOPY RETURNDATASIZE PUSH1 0x0 REVERT JUMPDEST POP POP POP POP PUSH1 0x40 MLOAD RETURNDATASIZE PUSH1 0x1F NOT PUSH1 0x1F DUP3 ADD AND DUP3 ADD DUP1 PUSH1 0x40 MSTORE POP DUP2 ADD SWAP1 PUSH2 0x305 SWAP2 SWAP1 PUSH2 0x356 JUMP JUMPDEST POP POP PUSH1 0x1 PUSH1 0x0 SSTORE POP SWAP7 SWAP6 POP POP POP POP POP POP JUMP JUMPDEST DUP1 CALLDATALOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP2 AND DUP2 EQ PUSH2 0x32E JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST SWAP2 SWAP1 POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x344 JUMPI DUP1 DUP2 REVERT JUMPDEST DUP2 MLOAD PUSH2 0x34F DUP2 PUSH2 0x3FA JUMP JUMPDEST SWAP4 SWAP3 POP POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x367 JUMPI DUP1 DUP2 REVERT JUMPDEST POP MLOAD SWAP2 SWAP1 POP JUMP JUMPDEST PUSH1 0x0 DUP1 PUSH1 0x40 DUP4 DUP6 SUB SLT ISZERO PUSH2 0x380 JUMPI DUP1 DUP2 REVERT JUMPDEST POP POP DUP1 MLOAD PUSH1 0x20 SWAP1 SWAP2 ADD MLOAD SWAP1 SWAP3 SWAP1 SWAP2 POP JUMP JUMPDEST PUSH1 0x0 DUP1 PUSH1 0x0 DUP1 PUSH1 0x0 DUP1 PUSH1 0xC0 DUP8 DUP10 SUB SLT ISZERO PUSH2 0x3A9 JUMPI DUP2 DUP3 REVERT JUMPDEST DUP7 CALLDATALOAD SWAP6 POP PUSH1 0x20 DUP8 ADD CALLDATALOAD SWAP5 POP PUSH1 0x40 DUP8 ADD CALLDATALOAD PUSH2 0x3C2 DUP2 PUSH2 0x3FA JUMP JUMPDEST SWAP4 POP PUSH1 0x60 DUP8 ADD CALLDATALOAD PUSH2 0x3D2 DUP2 PUSH2 0x3FA JUMP JUMPDEST SWAP3 POP PUSH2 0x3E0 PUSH1 0x80 DUP9 ADD PUSH2 0x317 JUMP JUMPDEST SWAP2 POP PUSH2 0x3EE PUSH1 0xA0 DUP9 ADD PUSH2 0x317 JUMP JUMPDEST SWAP1 POP SWAP3 SWAP6 POP SWAP3 SWAP6 POP SWAP3 SWAP6 JUMP JUMPDEST DUP1 ISZERO ISZERO DUP2 EQ PUSH2 0x408 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 SUB 0x5D 0x5F 0xD0 0xBD MUL CALLDATASIZE 0xC4 PUSH31 0x9DF859E0AE6C55109FFF3B7E57A22393A4601812C7805B64736F6C63430008 DIV STOP CALLER ",
+  "pcMap": {
+    "0": {
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x80"
+    },
+    "2": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "4": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "MSTORE",
+      "path": "26"
+    },
+    "5": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "CALLVALUE",
+      "path": "26"
+    },
+    "6": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "7": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "8": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x10"
+    },
+    "11": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "12": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "14": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "15": {
+      "dev": "Cannot send ether to nonpayable function",
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "REVERT",
+      "path": "26"
+    },
+    "16": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "17": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "18": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x4"
+    },
+    "20": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "CALLDATASIZE",
+      "path": "26"
+    },
+    "21": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "LT",
+      "path": "26"
+    },
+    "22": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x41"
+    },
+    "25": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "26": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "28": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "CALLDATALOAD",
+      "path": "26"
+    },
+    "29": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0xE0"
+    },
+    "31": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "SHR",
+      "path": "26"
+    },
+    "32": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "33": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH4",
+      "path": "26",
+      "value": "0x328C393"
+    },
+    "38": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "EQ",
+      "path": "26"
+    },
+    "39": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x46"
+    },
+    "42": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "43": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "44": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH4",
+      "path": "26",
+      "value": "0x16DC165B"
+    },
+    "49": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "EQ",
+      "path": "26"
+    },
+    "50": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x76"
+    },
+    "53": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "54": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "55": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH4",
+      "path": "26",
+      "value": "0x6EE77855"
+    },
+    "60": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "EQ",
+      "path": "26"
+    },
+    "61": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x89"
+    },
+    "64": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "65": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "66": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "68": {
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "69": {
+      "first_revert": true,
+      "fn": null,
+      "offset": [
+        349,
+        1496
+      ],
+      "op": "REVERT",
+      "path": "26"
+    },
+    "70": {
+      "offset": [
+        415,
+        458
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "71": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x2"
+    },
+    "73": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "SLOAD",
+      "path": "26"
+    },
+    "74": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x59"
+    },
+    "77": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "78": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "80": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "82": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "84": {
+      "op": "SHL"
+    },
+    "85": {
+      "op": "SUB"
+    },
+    "86": {
+      "offset": [
+        415,
+        458
+      ],
+      "op": "AND",
+      "path": "26"
+    },
+    "87": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "88": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "JUMP",
+      "path": "26"
+    },
+    "89": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "90": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "92": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "93": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "95": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "97": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "99": {
+      "op": "SHL"
+    },
+    "100": {
+      "op": "SUB"
+    },
+    "101": {
+      "op": "SWAP1"
+    },
+    "102": {
+      "op": "SWAP2"
+    },
+    "103": {
+      "op": "AND"
+    },
+    "104": {
+      "op": "DUP2"
+    },
+    "105": {
+      "op": "MSTORE"
+    },
+    "106": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "108": {
+      "op": "ADD"
+    },
+    "109": {
+      "offset": [
+        415,
+        458
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "110": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "112": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "113": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "114": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "SWAP2",
+      "path": "26"
+    },
+    "115": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "SUB",
+      "path": "26"
+    },
+    "116": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "117": {
+      "fn": null,
+      "offset": [
+        415,
+        458
+      ],
+      "op": "RETURN",
+      "path": "26"
+    },
+    "118": {
+      "offset": [
+        390,
+        409
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "119": {
+      "fn": null,
+      "offset": [
+        390,
+        409
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x1"
+    },
+    "121": {
+      "fn": null,
+      "offset": [
+        390,
+        409
+      ],
+      "op": "SLOAD",
+      "path": "26"
+    },
+    "122": {
+      "fn": null,
+      "offset": [
+        390,
+        409
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x59"
+    },
+    "125": {
+      "fn": null,
+      "offset": [
+        390,
+        409
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "126": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "128": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "130": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "132": {
+      "op": "SHL"
+    },
+    "133": {
+      "op": "SUB"
+    },
+    "134": {
+      "offset": [
+        390,
+        409
+      ],
+      "op": "AND",
+      "path": "26"
+    },
+    "135": {
+      "fn": null,
+      "offset": [
+        390,
+        409
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "136": {
+      "fn": null,
+      "offset": [
+        390,
+        409
+      ],
+      "op": "JUMP",
+      "path": "26"
+    },
+    "137": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "138": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x9C"
+    },
+    "141": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x97"
+    },
+    "144": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "CALLDATASIZE",
+      "path": "26"
+    },
+    "145": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x4"
+    },
+    "147": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x391"
+    },
+    "150": {
+      "fn": "Router.createFor",
+      "jump": "i",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "JUMP",
+      "path": "26"
+    },
+    "151": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "152": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0xAA"
+    },
+    "155": {
+      "fn": "Router.createFor",
+      "jump": "i",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "JUMP",
+      "path": "26"
+    },
+    "156": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "157": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "159": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "160": {
+      "op": "SWAP1"
+    },
+    "161": {
+      "op": "DUP2"
+    },
+    "162": {
+      "op": "MSTORE"
+    },
+    "163": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "165": {
+      "op": "ADD"
+    },
+    "166": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x6D"
+    },
+    "169": {
+      "op": "JUMP"
+    },
+    "170": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "171": {
+      "fn": "Router.createFor",
+      "offset": [
+        834,
+        850
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "173": {
+      "offset": [
+        1680,
+        1681
+      ],
+      "op": "PUSH1",
+      "path": "3",
+      "value": "0x2"
+    },
+    "175": {
+      "offset": [
+        2259,
+        2266
+      ],
+      "op": "PUSH1",
+      "path": "3",
+      "value": "0x0"
+    },
+    "177": {
+      "fn": "Router.createFor",
+      "offset": [
+        2259,
+        2266
+      ],
+      "op": "SLOAD",
+      "path": "3"
+    },
+    "178": {
+      "offset": [
+        2259,
+        2278
+      ],
+      "op": "EQ",
+      "path": "3"
+    },
+    "179": {
+      "branch": 3,
+      "fn": "Router.createFor",
+      "offset": [
+        2259,
+        2278
+      ],
+      "op": "ISZERO",
+      "path": "3"
+    },
+    "180": {
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "PUSH2",
+      "path": "3",
+      "value": "0x103"
+    },
+    "183": {
+      "branch": 3,
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "JUMPI",
+      "path": "3"
+    },
+    "184": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "PUSH1",
+      "path": "3",
+      "value": "0x40"
+    },
+    "186": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "MLOAD",
+      "path": "3"
+    },
+    "187": {
+      "op": "PUSH3",
+      "value": "0x461BCD"
+    },
+    "191": {
+      "op": "PUSH1",
+      "value": "0xE5"
+    },
+    "193": {
+      "op": "SHL"
+    },
+    "194": {
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "DUP2",
+      "path": "3"
+    },
+    "195": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "MSTORE",
+      "path": "3"
+    },
+    "196": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "198": {
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "PUSH1",
+      "path": "3",
+      "value": "0x4"
+    },
+    "200": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "DUP3",
+      "path": "3"
+    },
+    "201": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "ADD",
+      "path": "3"
+    },
+    "202": {
+      "op": "MSTORE"
+    },
+    "203": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "205": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "207": {
+      "op": "DUP3"
+    },
+    "208": {
+      "op": "ADD"
+    },
+    "209": {
+      "op": "MSTORE"
+    },
+    "210": {
+      "op": "PUSH32",
+      "value": "0x5265656E7472616E637947756172643A207265656E7472616E742063616C6C00"
+    },
+    "243": {
+      "op": "PUSH1",
+      "value": "0x44"
+    },
+    "245": {
+      "op": "DUP3"
+    },
+    "246": {
+      "op": "ADD"
+    },
+    "247": {
+      "op": "MSTORE"
+    },
+    "248": {
+      "op": "PUSH1",
+      "value": "0x64"
+    },
+    "250": {
+      "op": "ADD"
+    },
+    "251": {
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "PUSH1",
+      "path": "3",
+      "value": "0x40"
+    },
+    "253": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "MLOAD",
+      "path": "3"
+    },
+    "254": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "DUP1",
+      "path": "3"
+    },
+    "255": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "SWAP2",
+      "path": "3"
+    },
+    "256": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "SUB",
+      "path": "3"
+    },
+    "257": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "SWAP1",
+      "path": "3"
+    },
+    "258": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "REVERT",
+      "optimizer_revert": true,
+      "path": "3"
+    },
+    "259": {
+      "fn": "Router.createFor",
+      "offset": [
+        2251,
+        2314
+      ],
+      "op": "JUMPDEST",
+      "path": "3"
+    },
+    "260": {
+      "offset": [
+        1680,
+        1681
+      ],
+      "op": "PUSH1",
+      "path": "3",
+      "value": "0x2"
+    },
+    "262": {
+      "offset": [
+        2389,
+        2396
+      ],
+      "op": "PUSH1",
+      "path": "3",
+      "value": "0x0"
+    },
+    "264": {
+      "offset": [
+        2389,
+        2407
+      ],
+      "op": "DUP2",
+      "path": "3"
+    },
+    "265": {
+      "fn": "Router.createFor",
+      "offset": [
+        2389,
+        2407
+      ],
+      "op": "DUP2",
+      "path": "3"
+    },
+    "266": {
+      "fn": "Router.createFor",
+      "offset": [
+        2389,
+        2407
+      ],
+      "op": "SSTORE",
+      "path": "3"
+    },
+    "267": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "DUP2",
+      "path": "26",
+      "statement": 0
+    },
+    "268": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "SLOAD",
+      "path": "26"
+    },
+    "269": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "271": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "273": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "275": {
+      "op": "SHL"
+    },
+    "276": {
+      "op": "SUB"
+    },
+    "277": {
+      "op": "NOT"
+    },
+    "278": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "AND",
+      "path": "26"
+    },
+    "279": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "281": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "283": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "285": {
+      "op": "SHL"
+    },
+    "286": {
+      "op": "SUB"
+    },
+    "287": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "DUP6",
+      "path": "26"
+    },
+    "288": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "289": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "AND",
+      "path": "26"
+    },
+    "290": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "SWAP2",
+      "path": "26"
+    },
+    "291": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "292": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "OR",
+      "path": "26"
+    },
+    "293": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "294": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "SWAP4",
+      "path": "26"
+    },
+    "295": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "SSTORE",
+      "path": "26"
+    },
+    "296": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "298": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "299": {
+      "op": "PUSH4",
+      "value": "0x1D85709D"
+    },
+    "304": {
+      "op": "PUSH1",
+      "value": "0xE3"
+    },
+    "306": {
+      "op": "SHL"
+    },
+    "307": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "308": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "MSTORE",
+      "path": "26"
+    },
+    "309": {
+      "fn": "Router.createFor",
+      "offset": [
+        1003,
+        1013
+      ],
+      "op": "CALLER",
+      "path": "26"
+    },
+    "310": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x4"
+    },
+    "312": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "313": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "314": {
+      "op": "MSTORE"
+    },
+    "315": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "317": {
+      "op": "DUP2"
+    },
+    "318": {
+      "op": "ADD"
+    },
+    "319": {
+      "op": "DUP12"
+    },
+    "320": {
+      "op": "SWAP1"
+    },
+    "321": {
+      "op": "MSTORE"
+    },
+    "322": {
+      "op": "PUSH1",
+      "value": "0x44"
+    },
+    "324": {
+      "op": "DUP2"
+    },
+    "325": {
+      "op": "ADD"
+    },
+    "326": {
+      "op": "DUP11"
+    },
+    "327": {
+      "op": "SWAP1"
+    },
+    "328": {
+      "op": "MSTORE"
+    },
+    "329": {
+      "op": "DUP9"
+    },
+    "330": {
+      "op": "ISZERO"
+    },
+    "331": {
+      "op": "ISZERO"
+    },
+    "332": {
+      "op": "PUSH1",
+      "value": "0x64"
+    },
+    "334": {
+      "op": "DUP3"
+    },
+    "335": {
+      "op": "ADD"
+    },
+    "336": {
+      "op": "MSTORE"
+    },
+    "337": {
+      "op": "DUP8"
+    },
+    "338": {
+      "op": "ISZERO"
+    },
+    "339": {
+      "op": "ISZERO"
+    },
+    "340": {
+      "op": "PUSH1",
+      "value": "0x84"
+    },
+    "342": {
+      "op": "DUP3"
+    },
+    "343": {
+      "op": "ADD"
+    },
+    "344": {
+      "op": "MSTORE"
+    },
+    "345": {
+      "op": "SWAP3"
+    },
+    "346": {
+      "op": "DUP7"
+    },
+    "347": {
+      "op": "AND"
+    },
+    "348": {
+      "op": "PUSH1",
+      "value": "0xA4"
+    },
+    "350": {
+      "op": "DUP5"
+    },
+    "351": {
+      "op": "ADD"
+    },
+    "352": {
+      "op": "MSTORE"
+    },
+    "353": {
+      "offset": [
+        2389,
+        2396
+      ],
+      "op": "SWAP1",
+      "path": "3"
+    },
+    "354": {
+      "fn": "Router.createFor",
+      "offset": [
+        2389,
+        2396
+      ],
+      "op": "SWAP2",
+      "path": "3"
+    },
+    "355": {
+      "fn": "Router.createFor",
+      "offset": [
+        2389,
+        2396
+      ],
+      "op": "DUP3",
+      "path": "3"
+    },
+    "356": {
+      "fn": "Router.createFor",
+      "offset": [
+        2389,
+        2396
+      ],
+      "op": "SWAP2",
+      "path": "3"
+    },
+    "357": {
+      "fn": "Router.createFor",
+      "offset": [
+        862,
+        917
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "358": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        989
+      ],
+      "op": "PUSH4",
+      "path": "26",
+      "value": "0xEC2B84E8"
+    },
+    "363": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        989
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "364": {
+      "op": "PUSH1",
+      "value": "0xC4"
+    },
+    "366": {
+      "op": "ADD"
+    },
+    "367": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "369": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "370": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "371": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "372": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP4",
+      "path": "26"
+    },
+    "373": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "SUB",
+      "path": "26"
+    },
+    "374": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "375": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "377": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP8",
+      "path": "26"
+    },
+    "378": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "379": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "EXTCODESIZE",
+      "path": "26"
+    },
+    "380": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "381": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "382": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "383": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x187"
+    },
+    "386": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "387": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "389": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "390": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "REVERT",
+      "path": "26"
+    },
+    "391": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "392": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "393": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "GAS",
+      "path": "26"
+    },
+    "394": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "CALL",
+      "path": "26"
+    },
+    "395": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "396": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "397": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "398": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x19B"
+    },
+    "401": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "402": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "26"
+    },
+    "403": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "405": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "406": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "RETURNDATACOPY",
+      "path": "26"
+    },
+    "407": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "26"
+    },
+    "408": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "410": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "REVERT",
+      "path": "26"
+    },
+    "411": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "412": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "413": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "414": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "415": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "416": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "418": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "419": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "26"
+    },
+    "420": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x1F"
+    },
+    "422": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "NOT",
+      "path": "26"
+    },
+    "423": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x1F"
+    },
+    "425": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "426": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "427": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "AND",
+      "path": "26"
+    },
+    "428": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "429": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "430": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "431": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "433": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "MSTORE",
+      "path": "26"
+    },
+    "434": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "435": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "436": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "437": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "438": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x1BF"
+    },
+    "441": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "SWAP2",
+      "path": "26"
+    },
+    "442": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "443": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x36E"
+    },
+    "446": {
+      "fn": "Router.createFor",
+      "jump": "i",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "JUMP",
+      "path": "26"
+    },
+    "447": {
+      "fn": "Router.createFor",
+      "offset": [
+        962,
+        1127
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "448": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1214
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "statement": 1,
+      "value": "0x1"
+    },
+    "450": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1214
+      ],
+      "op": "SLOAD",
+      "path": "26"
+    },
+    "451": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "453": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "454": {
+      "op": "PUSH4",
+      "value": "0x23B872DD"
+    },
+    "459": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "461": {
+      "op": "SHL"
+    },
+    "462": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "463": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "MSTORE",
+      "path": "26"
+    },
+    "464": {
+      "fn": "Router.createFor",
+      "offset": [
+        1228,
+        1238
+      ],
+      "op": "CALLER",
+      "path": "26"
+    },
+    "465": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x4"
+    },
+    "467": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "468": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "469": {
+      "op": "MSTORE"
+    },
+    "470": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "472": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "474": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "476": {
+      "op": "SHL"
+    },
+    "477": {
+      "op": "SUB"
+    },
+    "478": {
+      "op": "DUP9"
+    },
+    "479": {
+      "op": "DUP2"
+    },
+    "480": {
+      "op": "AND"
+    },
+    "481": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "483": {
+      "op": "DUP4"
+    },
+    "484": {
+      "op": "ADD"
+    },
+    "485": {
+      "op": "MSTORE"
+    },
+    "486": {
+      "op": "PUSH1",
+      "value": "0x44"
+    },
+    "488": {
+      "op": "DUP3"
+    },
+    "489": {
+      "op": "ADD"
+    },
+    "490": {
+      "op": "DUP15"
+    },
+    "491": {
+      "op": "SWAP1"
+    },
+    "492": {
+      "op": "MSTORE"
+    },
+    "493": {
+      "fn": "Router.createFor",
+      "offset": [
+        927,
+        1127
+      ],
+      "op": "SWAP4",
+      "path": "26"
+    },
+    "494": {
+      "fn": "Router.createFor",
+      "offset": [
+        927,
+        1127
+      ],
+      "op": "SWAP6",
+      "path": "26"
+    },
+    "495": {
+      "op": "POP"
+    },
+    "496": {
+      "fn": "Router.createFor",
+      "offset": [
+        927,
+        1127
+      ],
+      "op": "SWAP2",
+      "path": "26"
+    },
+    "497": {
+      "fn": "Router.createFor",
+      "offset": [
+        927,
+        1127
+      ],
+      "op": "SWAP4",
+      "path": "26"
+    },
+    "498": {
+      "op": "POP"
+    },
+    "499": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1214
+      ],
+      "op": "SWAP2",
+      "path": "26"
+    },
+    "500": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1214
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "501": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1214
+      ],
+      "op": "SWAP2",
+      "path": "26"
+    },
+    "502": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1214
+      ],
+      "op": "AND",
+      "path": "26"
+    },
+    "503": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1214
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "504": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1227
+      ],
+      "op": "PUSH4",
+      "path": "26",
+      "value": "0x23B872DD"
+    },
+    "509": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1227
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "510": {
+      "op": "PUSH1",
+      "value": "0x64"
+    },
+    "512": {
+      "op": "ADD"
+    },
+    "513": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x20"
+    },
+    "515": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "517": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "518": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "519": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP4",
+      "path": "26"
+    },
+    "520": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "SUB",
+      "path": "26"
+    },
+    "521": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "522": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "524": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP8",
+      "path": "26"
+    },
+    "525": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "526": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "EXTCODESIZE",
+      "path": "26"
+    },
+    "527": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "528": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "529": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "530": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x21A"
+    },
+    "533": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "534": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "536": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "537": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "REVERT",
+      "path": "26"
+    },
+    "538": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "539": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "540": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "GAS",
+      "path": "26"
+    },
+    "541": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "CALL",
+      "path": "26"
+    },
+    "542": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "543": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "544": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "545": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x22E"
+    },
+    "548": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "549": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "26"
+    },
+    "550": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "552": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "553": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "RETURNDATACOPY",
+      "path": "26"
+    },
+    "554": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "26"
+    },
+    "555": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "557": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "REVERT",
+      "path": "26"
+    },
+    "558": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "559": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "560": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "561": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "562": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "563": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "565": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "566": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "26"
+    },
+    "567": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x1F"
+    },
+    "569": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "NOT",
+      "path": "26"
+    },
+    "570": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x1F"
+    },
+    "572": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "573": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "574": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "AND",
+      "path": "26"
+    },
+    "575": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "576": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "577": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "578": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "580": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "MSTORE",
+      "path": "26"
+    },
+    "581": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "582": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "583": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "584": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "585": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x252"
+    },
+    "588": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "SWAP2",
+      "path": "26"
+    },
+    "589": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "590": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x333"
+    },
+    "593": {
+      "fn": "Router.createFor",
+      "jump": "i",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "JUMP",
+      "path": "26"
+    },
+    "594": {
+      "fn": "Router.createFor",
+      "offset": [
+        1208,
+        1266
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "595": {
+      "op": "POP"
+    },
+    "596": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1292
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "statement": 2,
+      "value": "0x2"
+    },
+    "598": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1292
+      ],
+      "op": "SLOAD",
+      "path": "26"
+    },
+    "599": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "601": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "602": {
+      "op": "PUSH4",
+      "value": "0x40BE859"
+    },
+    "607": {
+      "op": "PUSH1",
+      "value": "0xE3"
+    },
+    "609": {
+      "op": "SHL"
+    },
+    "610": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "611": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "MSTORE",
+      "path": "26"
+    },
+    "612": {
+      "fn": "Router.createFor",
+      "offset": [
+        1323,
+        1333
+      ],
+      "op": "CALLER",
+      "path": "26"
+    },
+    "613": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x4"
+    },
+    "615": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "616": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "617": {
+      "op": "MSTORE"
+    },
+    "618": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "620": {
+      "op": "DUP2"
+    },
+    "621": {
+      "op": "ADD"
+    },
+    "622": {
+      "op": "DUP12"
+    },
+    "623": {
+      "op": "SWAP1"
+    },
+    "624": {
+      "op": "MSTORE"
+    },
+    "625": {
+      "op": "PUSH1",
+      "value": "0x44"
+    },
+    "627": {
+      "op": "DUP2"
+    },
+    "628": {
+      "op": "ADD"
+    },
+    "629": {
+      "op": "DUP11"
+    },
+    "630": {
+      "op": "SWAP1"
+    },
+    "631": {
+      "op": "MSTORE"
+    },
+    "632": {
+      "op": "DUP9"
+    },
+    "633": {
+      "op": "ISZERO"
+    },
+    "634": {
+      "op": "ISZERO"
+    },
+    "635": {
+      "op": "PUSH1",
+      "value": "0x64"
+    },
+    "637": {
+      "op": "DUP3"
+    },
+    "638": {
+      "op": "ADD"
+    },
+    "639": {
+      "op": "MSTORE"
+    },
+    "640": {
+      "op": "DUP8"
+    },
+    "641": {
+      "op": "ISZERO"
+    },
+    "642": {
+      "op": "ISZERO"
+    },
+    "643": {
+      "op": "PUSH1",
+      "value": "0x84"
+    },
+    "645": {
+      "op": "DUP3"
+    },
+    "646": {
+      "op": "ADD"
+    },
+    "647": {
+      "op": "MSTORE"
+    },
+    "648": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "650": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "652": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "654": {
+      "op": "SHL"
+    },
+    "655": {
+      "op": "SUB"
+    },
+    "656": {
+      "op": "DUP8"
+    },
+    "657": {
+      "op": "DUP2"
+    },
+    "658": {
+      "op": "AND"
+    },
+    "659": {
+      "op": "PUSH1",
+      "value": "0xA4"
+    },
+    "661": {
+      "op": "DUP4"
+    },
+    "662": {
+      "op": "ADD"
+    },
+    "663": {
+      "op": "MSTORE"
+    },
+    "664": {
+      "op": "PUSH1",
+      "value": "0xC4"
+    },
+    "666": {
+      "op": "DUP3"
+    },
+    "667": {
+      "op": "ADD"
+    },
+    "668": {
+      "op": "DUP6"
+    },
+    "669": {
+      "op": "SWAP1"
+    },
+    "670": {
+      "op": "MSTORE"
+    },
+    "671": {
+      "op": "PUSH1",
+      "value": "0xE4"
+    },
+    "673": {
+      "op": "DUP3"
+    },
+    "674": {
+      "op": "ADD"
+    },
+    "675": {
+      "op": "DUP5"
+    },
+    "676": {
+      "op": "SWAP1"
+    },
+    "677": {
+      "op": "MSTORE"
+    },
+    "678": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1292
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "679": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1292
+      ],
+      "op": "SWAP2",
+      "path": "26"
+    },
+    "680": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1292
+      ],
+      "op": "AND",
+      "path": "26"
+    },
+    "681": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1292
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "682": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1309
+      ],
+      "op": "PUSH4",
+      "path": "26",
+      "value": "0x205F42C8"
+    },
+    "687": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1309
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "688": {
+      "op": "PUSH2",
+      "value": "0x104"
+    },
+    "691": {
+      "op": "ADD"
+    },
+    "692": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x20"
+    },
+    "694": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "696": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "697": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "698": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP4",
+      "path": "26"
+    },
+    "699": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "SUB",
+      "path": "26"
+    },
+    "700": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "701": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "703": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP8",
+      "path": "26"
+    },
+    "704": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "705": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "EXTCODESIZE",
+      "path": "26"
+    },
+    "706": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "707": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "708": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "709": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x2CD"
+    },
+    "712": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "713": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "715": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "716": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "REVERT",
+      "path": "26"
+    },
+    "717": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "718": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "719": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "GAS",
+      "path": "26"
+    },
+    "720": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "CALL",
+      "path": "26"
+    },
+    "721": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "722": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "723": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "ISZERO",
+      "path": "26"
+    },
+    "724": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x2E1"
+    },
+    "727": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "JUMPI",
+      "path": "26"
+    },
+    "728": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "26"
+    },
+    "729": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "731": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "732": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "RETURNDATACOPY",
+      "path": "26"
+    },
+    "733": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "26"
+    },
+    "734": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x0"
+    },
+    "736": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "REVERT",
+      "path": "26"
+    },
+    "737": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "738": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "739": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "740": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "741": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "742": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "744": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "MLOAD",
+      "path": "26"
+    },
+    "745": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "26"
+    },
+    "746": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x1F"
+    },
+    "748": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "NOT",
+      "path": "26"
+    },
+    "749": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x1F"
+    },
+    "751": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "752": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "753": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "AND",
+      "path": "26"
+    },
+    "754": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP3",
+      "path": "26"
+    },
+    "755": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "756": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP1",
+      "path": "26"
+    },
+    "757": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH1",
+      "path": "26",
+      "value": "0x40"
+    },
+    "759": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "MSTORE",
+      "path": "26"
+    },
+    "760": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "POP",
+      "path": "26"
+    },
+    "761": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "DUP2",
+      "path": "26"
+    },
+    "762": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "ADD",
+      "path": "26"
+    },
+    "763": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "764": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x305"
+    },
+    "767": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "SWAP2",
+      "path": "26"
+    },
+    "768": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "SWAP1",
+      "path": "26"
+    },
+    "769": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "PUSH2",
+      "path": "26",
+      "value": "0x356"
+    },
+    "772": {
+      "fn": "Router.createFor",
+      "jump": "i",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "JUMP",
+      "path": "26"
+    },
+    "773": {
+      "fn": "Router.createFor",
+      "offset": [
+        1277,
+        1487
+      ],
+      "op": "JUMPDEST",
+      "path": "26"
+    },
+    "774": {
+      "op": "POP"
+    },
+    "775": {
+      "op": "POP"
+    },
+    "776": {
+      "offset": [
+        1637,
+        1638
+      ],
+      "op": "PUSH1",
+      "path": "3",
+      "value": "0x1"
+    },
+    "778": {
+      "offset": [
+        2562,
+        2569
+      ],
+      "op": "PUSH1",
+      "path": "3",
+      "value": "0x0"
+    },
+    "780": {
+      "offset": [
+        2562,
+        2584
+      ],
+      "op": "SSTORE",
+      "path": "3"
+    },
+    "781": {
+      "op": "POP"
+    },
+    "782": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "SWAP7",
+      "path": "26"
+    },
+    "783": {
+      "fn": "Router.createFor",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "SWAP6",
+      "path": "26"
+    },
+    "784": {
+      "op": "POP"
+    },
+    "785": {
+      "op": "POP"
+    },
+    "786": {
+      "op": "POP"
+    },
+    "787": {
+      "op": "POP"
+    },
+    "788": {
+      "op": "POP"
+    },
+    "789": {
+      "op": "POP"
+    },
+    "790": {
+      "fn": "Router.createFor",
+      "jump": "o",
+      "offset": [
+        627,
+        1494
+      ],
+      "op": "JUMP",
+      "path": "26"
+    },
+    "791": {
+      "op": "JUMPDEST"
+    },
+    "792": {
+      "op": "DUP1"
+    },
+    "793": {
+      "op": "CALLDATALOAD"
+    },
+    "794": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "796": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "798": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "800": {
+      "op": "SHL"
+    },
+    "801": {
+      "op": "SUB"
+    },
+    "802": {
+      "op": "DUP2"
+    },
+    "803": {
+      "op": "AND"
+    },
+    "804": {
+      "op": "DUP2"
+    },
+    "805": {
+      "op": "EQ"
+    },
+    "806": {
+      "op": "PUSH2",
+      "value": "0x32E"
+    },
+    "809": {
+      "op": "JUMPI"
+    },
+    "810": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "812": {
+      "op": "DUP1"
+    },
+    "813": {
+      "op": "REVERT"
+    },
+    "814": {
+      "op": "JUMPDEST"
+    },
+    "815": {
+      "op": "SWAP2"
+    },
+    "816": {
+      "op": "SWAP1"
+    },
+    "817": {
+      "op": "POP"
+    },
+    "818": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "819": {
+      "op": "JUMPDEST"
+    },
+    "820": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "822": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "824": {
+      "op": "DUP3"
+    },
+    "825": {
+      "op": "DUP5"
+    },
+    "826": {
+      "op": "SUB"
+    },
+    "827": {
+      "op": "SLT"
+    },
+    "828": {
+      "op": "ISZERO"
+    },
+    "829": {
+      "op": "PUSH2",
+      "value": "0x344"
+    },
+    "832": {
+      "op": "JUMPI"
+    },
+    "833": {
+      "op": "DUP1"
+    },
+    "834": {
+      "op": "DUP2"
+    },
+    "835": {
+      "op": "REVERT"
+    },
+    "836": {
+      "op": "JUMPDEST"
+    },
+    "837": {
+      "op": "DUP2"
+    },
+    "838": {
+      "op": "MLOAD"
+    },
+    "839": {
+      "op": "PUSH2",
+      "value": "0x34F"
+    },
+    "842": {
+      "op": "DUP2"
+    },
+    "843": {
+      "op": "PUSH2",
+      "value": "0x3FA"
+    },
+    "846": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "847": {
+      "op": "JUMPDEST"
+    },
+    "848": {
+      "op": "SWAP4"
+    },
+    "849": {
+      "op": "SWAP3"
+    },
+    "850": {
+      "op": "POP"
+    },
+    "851": {
+      "op": "POP"
+    },
+    "852": {
+      "op": "POP"
+    },
+    "853": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "854": {
+      "op": "JUMPDEST"
+    },
+    "855": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "857": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "859": {
+      "op": "DUP3"
+    },
+    "860": {
+      "op": "DUP5"
+    },
+    "861": {
+      "op": "SUB"
+    },
+    "862": {
+      "op": "SLT"
+    },
+    "863": {
+      "op": "ISZERO"
+    },
+    "864": {
+      "op": "PUSH2",
+      "value": "0x367"
+    },
+    "867": {
+      "op": "JUMPI"
+    },
+    "868": {
+      "op": "DUP1"
+    },
+    "869": {
+      "op": "DUP2"
+    },
+    "870": {
+      "op": "REVERT"
+    },
+    "871": {
+      "op": "JUMPDEST"
+    },
+    "872": {
+      "op": "POP"
+    },
+    "873": {
+      "op": "MLOAD"
+    },
+    "874": {
+      "op": "SWAP2"
+    },
+    "875": {
+      "op": "SWAP1"
+    },
+    "876": {
+      "op": "POP"
+    },
+    "877": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "878": {
+      "op": "JUMPDEST"
+    },
+    "879": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "881": {
+      "op": "DUP1"
+    },
+    "882": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "884": {
+      "op": "DUP4"
+    },
+    "885": {
+      "op": "DUP6"
+    },
+    "886": {
+      "op": "SUB"
+    },
+    "887": {
+      "op": "SLT"
+    },
+    "888": {
+      "op": "ISZERO"
+    },
+    "889": {
+      "op": "PUSH2",
+      "value": "0x380"
+    },
+    "892": {
+      "op": "JUMPI"
+    },
+    "893": {
+      "op": "DUP1"
+    },
+    "894": {
+      "op": "DUP2"
+    },
+    "895": {
+      "op": "REVERT"
+    },
+    "896": {
+      "op": "JUMPDEST"
+    },
+    "897": {
+      "op": "POP"
+    },
+    "898": {
+      "op": "POP"
+    },
+    "899": {
+      "op": "DUP1"
+    },
+    "900": {
+      "op": "MLOAD"
+    },
+    "901": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "903": {
+      "op": "SWAP1"
+    },
+    "904": {
+      "op": "SWAP2"
+    },
+    "905": {
+      "op": "ADD"
+    },
+    "906": {
+      "op": "MLOAD"
+    },
+    "907": {
+      "op": "SWAP1"
+    },
+    "908": {
+      "op": "SWAP3"
+    },
+    "909": {
+      "op": "SWAP1"
+    },
+    "910": {
+      "op": "SWAP2"
+    },
+    "911": {
+      "op": "POP"
+    },
+    "912": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "913": {
+      "op": "JUMPDEST"
+    },
+    "914": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "916": {
+      "op": "DUP1"
+    },
+    "917": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "919": {
+      "op": "DUP1"
+    },
+    "920": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "922": {
+      "op": "DUP1"
+    },
+    "923": {
+      "op": "PUSH1",
+      "value": "0xC0"
+    },
+    "925": {
+      "op": "DUP8"
+    },
+    "926": {
+      "op": "DUP10"
+    },
+    "927": {
+      "op": "SUB"
+    },
+    "928": {
+      "op": "SLT"
+    },
+    "929": {
+      "op": "ISZERO"
+    },
+    "930": {
+      "op": "PUSH2",
+      "value": "0x3A9"
+    },
+    "933": {
+      "op": "JUMPI"
+    },
+    "934": {
+      "op": "DUP2"
+    },
+    "935": {
+      "op": "DUP3"
+    },
+    "936": {
+      "op": "REVERT"
+    },
+    "937": {
+      "op": "JUMPDEST"
+    },
+    "938": {
+      "op": "DUP7"
+    },
+    "939": {
+      "op": "CALLDATALOAD"
+    },
+    "940": {
+      "op": "SWAP6"
+    },
+    "941": {
+      "op": "POP"
+    },
+    "942": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "944": {
+      "op": "DUP8"
+    },
+    "945": {
+      "op": "ADD"
+    },
+    "946": {
+      "op": "CALLDATALOAD"
+    },
+    "947": {
+      "op": "SWAP5"
+    },
+    "948": {
+      "op": "POP"
+    },
+    "949": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "951": {
+      "op": "DUP8"
+    },
+    "952": {
+      "op": "ADD"
+    },
+    "953": {
+      "op": "CALLDATALOAD"
+    },
+    "954": {
+      "op": "PUSH2",
+      "value": "0x3C2"
+    },
+    "957": {
+      "op": "DUP2"
+    },
+    "958": {
+      "op": "PUSH2",
+      "value": "0x3FA"
+    },
+    "961": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "962": {
+      "op": "JUMPDEST"
+    },
+    "963": {
+      "op": "SWAP4"
+    },
+    "964": {
+      "op": "POP"
+    },
+    "965": {
+      "op": "PUSH1",
+      "value": "0x60"
+    },
+    "967": {
+      "op": "DUP8"
+    },
+    "968": {
+      "op": "ADD"
+    },
+    "969": {
+      "op": "CALLDATALOAD"
+    },
+    "970": {
+      "op": "PUSH2",
+      "value": "0x3D2"
+    },
+    "973": {
+      "op": "DUP2"
+    },
+    "974": {
+      "op": "PUSH2",
+      "value": "0x3FA"
+    },
+    "977": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "978": {
+      "op": "JUMPDEST"
+    },
+    "979": {
+      "op": "SWAP3"
+    },
+    "980": {
+      "op": "POP"
+    },
+    "981": {
+      "op": "PUSH2",
+      "value": "0x3E0"
+    },
+    "984": {
+      "op": "PUSH1",
+      "value": "0x80"
+    },
+    "986": {
+      "op": "DUP9"
+    },
+    "987": {
+      "op": "ADD"
+    },
+    "988": {
+      "op": "PUSH2",
+      "value": "0x317"
+    },
+    "991": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "992": {
+      "op": "JUMPDEST"
+    },
+    "993": {
+      "op": "SWAP2"
+    },
+    "994": {
+      "op": "POP"
+    },
+    "995": {
+      "op": "PUSH2",
+      "value": "0x3EE"
+    },
+    "998": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1000": {
+      "op": "DUP9"
+    },
+    "1001": {
+      "op": "ADD"
+    },
+    "1002": {
+      "op": "PUSH2",
+      "value": "0x317"
+    },
+    "1005": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1006": {
+      "op": "JUMPDEST"
+    },
+    "1007": {
+      "op": "SWAP1"
+    },
+    "1008": {
+      "op": "POP"
+    },
+    "1009": {
+      "op": "SWAP3"
+    },
+    "1010": {
+      "op": "SWAP6"
+    },
+    "1011": {
+      "op": "POP"
+    },
+    "1012": {
+      "op": "SWAP3"
+    },
+    "1013": {
+      "op": "SWAP6"
+    },
+    "1014": {
+      "op": "POP"
+    },
+    "1015": {
+      "op": "SWAP3"
+    },
+    "1016": {
+      "op": "SWAP6"
+    },
+    "1017": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1018": {
+      "op": "JUMPDEST"
+    },
+    "1019": {
+      "op": "DUP1"
+    },
+    "1020": {
+      "op": "ISZERO"
+    },
+    "1021": {
+      "op": "ISZERO"
+    },
+    "1022": {
+      "op": "DUP2"
+    },
+    "1023": {
+      "op": "EQ"
+    },
+    "1024": {
+      "op": "PUSH2",
+      "value": "0x408"
+    },
+    "1027": {
+      "op": "JUMPI"
+    },
+    "1028": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1030": {
+      "op": "DUP1"
+    },
+    "1031": {
+      "op": "REVERT"
+    },
+    "1032": {
+      "op": "JUMPDEST"
+    },
+    "1033": {
+      "op": "POP"
+    },
+    "1034": {
+      "jump": "o",
+      "op": "JUMP"
+    }
+  },
+  "sha1": "568c0a2f18fa9ed69c07b6137f19cbc449674999",
+  "source": "pragma solidity ^0.8.0;\n\n// SPDX-License-Identifier: BUSL-1.1\n\nimport \"@openzeppelin/contracts/security/ReentrancyGuard.sol\";\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\nimport \"./InterfacesBinary.sol\";\n\n/**\n * @author Heisenberg\n * @title Buffer TokenX Bidirectional (Call and Put) Options\n * @notice Buffer TokenX Options Contract\n */\ncontract Router is ReentrancyGuard {\n    ERC20 public tokenX;\n    IBufferBinaryOptions public optionsContract;\n\n    constructor(ERC20 _tokenX) {\n        tokenX = _tokenX;\n    }\n\n    /**\n     * @notice Creates a new option\n     * @return optionID Created option's ID\n     */\n    function createFor(\n        uint256 totalFee,\n        uint256 period,\n        bool isYes,\n        bool isAbove,\n        address referrer,\n        address contractAddress\n    ) external nonReentrant returns (uint256 optionID) {\n        optionsContract = IBufferBinaryOptions(contractAddress);\n        (uint256 strike, uint256 amount) = optionsContract.checkParams(\n            msg.sender,\n            totalFee,\n            period,\n            isYes,\n            isAbove,\n            referrer\n        );\n\n        // User has to approve first inorder to execute this function\n        tokenX.transferFrom(msg.sender, contractAddress, totalFee);\n\n        optionsContract.createFromRouter(\n            msg.sender,\n            totalFee,\n            period,\n            isYes,\n            isAbove,\n            referrer,\n            strike,\n            amount\n        );\n    }\n}\n",
+  "sourceMap": "349:1147:26:-:0;;;465:60;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1637:1:3;1742:7;:22;;;502:16:26;;-1:-1:-1;;;;;;502:16:26;-1:-1:-1;;;;;502:16:26;;;;;;;;;;349:1147;;14:325:49;99:6;152:2;140:9;131:7;127:23;123:32;120:2;;;173:6;165;158:22;120:2;204:16;;-1:-1:-1;;;;;249:31:49;;239:42;;229:2;;300:6;292;285:22;229:2;328:5;110:229;-1:-1:-1;;;110:229:49:o;:::-;349:1147:26;;;;;;",
+  "sourcePath": "contracts/Binary ATM Options/Router.sol",
+  "type": "contract"
+}

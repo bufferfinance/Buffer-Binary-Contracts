@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.5.0",
+    "@poanet/solidity-flattener": "^3.0.7",
+    "ganache-cli": "^6.12.2"
+  }
+}

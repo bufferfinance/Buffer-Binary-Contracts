@@ -1,0 +1,1814 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_underlying",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_cash",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "cash",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCash",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_cash",
+          "type": "uint256"
+        }
+      ],
+      "name": "setCash",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "underlying",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "underlyingAsset",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "44": "contracts/Twap/TestContracts/FakeCToken.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/Twap/TestContracts/FakeCToken.sol",
+    "exportedSymbols": {
+      "FakeCToken": [
+        22617
+      ],
+      "ICErc20Delegator": [
+        16957
+      ],
+      "IERC20": [
+        16963
+      ],
+      "IPancakeFactory": [
+        17030
+      ],
+      "IPriceProvider": [
+        16969
+      ],
+      "ISlidingWindowOracle": [
+        16933
+      ],
+      "ITvlOracle": [
+        16941
+      ]
+    },
+    "id": 22618,
+    "license": "BUSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 22569,
+        "literals": [
+          "solidity",
+          "=",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:44"
+      },
+      {
+        "absolutePath": "contracts/Twap/Interfaces/Interfaces.sol",
+        "file": "../Interfaces/Interfaces.sol",
+        "id": 22570,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 22618,
+        "sourceUnit": 17031,
+        "src": "62:38:44",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 22617,
+        "linearizedBaseContracts": [
+          22617
+        ],
+        "name": "FakeCToken",
+        "nameLocation": "111:10:44",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "961be391",
+            "id": 22572,
+            "mutability": "mutable",
+            "name": "cash",
+            "nameLocation": "143:4:44",
+            "nodeType": "VariableDeclaration",
+            "scope": 22617,
+            "src": "128:19:44",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 22571,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "128:7:44",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "7158da7c",
+            "id": 22574,
+            "mutability": "mutable",
+            "name": "underlyingAsset",
+            "nameLocation": "168:15:44",
+            "nodeType": "VariableDeclaration",
+            "scope": 22617,
+            "src": "153:30:44",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 22573,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "153:7:44",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 22589,
+              "nodeType": "Block",
+              "src": "245:68:44",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 22583,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 22581,
+                      "name": "underlyingAsset",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 22574,
+                      "src": "255:15:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 22582,
+                      "name": "_underlying",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 22576,
+                      "src": "273:11:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "255:29:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 22584,
+                  "nodeType": "ExpressionStatement",
+                  "src": "255:29:44"
+                },
+                {
+                  "expression": {
+                    "id": 22587,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 22585,
+                      "name": "cash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 22572,
+                      "src": "294:4:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 22586,
+                      "name": "_cash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 22578,
+                      "src": "301:5:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "294:12:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 22588,
+                  "nodeType": "ExpressionStatement",
+                  "src": "294:12:44"
+                }
+              ]
+            },
+            "id": 22590,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 22579,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 22576,
+                  "mutability": "mutable",
+                  "name": "_underlying",
+                  "nameLocation": "210:11:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22590,
+                  "src": "202:19:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 22575,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 22578,
+                  "mutability": "mutable",
+                  "name": "_cash",
+                  "nameLocation": "231:5:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22590,
+                  "src": "223:13:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 22577,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "223:7:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "201:36:44"
+            },
+            "returnParameters": {
+              "id": 22580,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "245:0:44"
+            },
+            "scope": 22617,
+            "src": "190:123:44",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 22597,
+              "nodeType": "Block",
+              "src": "373:39:44",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 22595,
+                    "name": "underlyingAsset",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 22574,
+                    "src": "390:15:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 22594,
+                  "id": 22596,
+                  "nodeType": "Return",
+                  "src": "383:22:44"
+                }
+              ]
+            },
+            "functionSelector": "6f307dc3",
+            "id": 22598,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "underlying",
+            "nameLocation": "328:10:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 22591,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "338:2:44"
+            },
+            "returnParameters": {
+              "id": 22594,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 22593,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22598,
+                  "src": "364:7:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 22592,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "364:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "363:9:44"
+            },
+            "scope": 22617,
+            "src": "319:93:44",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 22605,
+              "nodeType": "Block",
+              "src": "469:28:44",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 22603,
+                    "name": "cash",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 22572,
+                    "src": "486:4:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 22602,
+                  "id": 22604,
+                  "nodeType": "Return",
+                  "src": "479:11:44"
+                }
+              ]
+            },
+            "functionSelector": "3b1d21a2",
+            "id": 22606,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCash",
+            "nameLocation": "427:7:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 22599,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "434:2:44"
+            },
+            "returnParameters": {
+              "id": 22602,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 22601,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22606,
+                  "src": "460:7:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 22600,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "460:7:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "459:9:44"
+            },
+            "scope": 22617,
+            "src": "418:79:44",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 22615,
+              "nodeType": "Block",
+              "src": "544:29:44",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 22613,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 22611,
+                      "name": "cash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 22572,
+                      "src": "554:4:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 22612,
+                      "name": "_cash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 22608,
+                      "src": "561:5:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "554:12:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 22614,
+                  "nodeType": "ExpressionStatement",
+                  "src": "554:12:44"
+                }
+              ]
+            },
+            "functionSelector": "7ac1141f",
+            "id": 22616,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setCash",
+            "nameLocation": "512:7:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 22609,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 22608,
+                  "mutability": "mutable",
+                  "name": "_cash",
+                  "nameLocation": "528:5:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22616,
+                  "src": "520:13:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 22607,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "520:7:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "519:15:44"
+            },
+            "returnParameters": {
+              "id": 22610,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "544:0:44"
+            },
+            "scope": 22617,
+            "src": "503:70:44",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 22618,
+        "src": "102:473:44",
+        "usedErrors": []
+      }
+    ],
+    "src": "37:539:44"
+  },
+  "bytecode": "608060405234801561001057600080fd5b506040516101a83803806101a883398101604081905261002f91610058565b600180546001600160a01b0319166001600160a01b039390931692909217909155600055610090565b6000806040838503121561006a578182fd5b82516001600160a01b0381168114610080578283fd5b6020939093015192949293505050565b6101098061009f6000396000f3fe6080604052348015600f57600080fd5b506004361060505760003560e01c80633b1d21a21460555780636f307dc314606c5780637158da7c1460905780637ac1141f1460a2578063961be3911460b4575b600080fd5b6000545b6040519081526020015b60405180910390f35b6001546001600160a01b03165b6040516001600160a01b0390911681526020016063565b6001546079906001600160a01b031681565b60b260ad36600460bc565b600055565b005b605960005481565b60006020828403121560cc578081fd5b503591905056fea264697066735822122075ffefc0c25aa73caf8eadea50e2b79762cda2a7ff2ba0286052200efb2e906c64736f6c63430008040033",
+  "bytecodeSha1": "c3fa6720f32900b7d940d27129e5b89003c45849",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 1
+    },
+    "version": "0.8.4+commit.c7e474f2"
+  },
+  "contractName": "FakeCToken",
+  "coverageMap": {
+    "branches": {
+      "44": {}
+    },
+    "statements": {
+      "44": {
+        "FakeCToken.getCash": {
+          "0": [
+            479,
+            490
+          ]
+        },
+        "FakeCToken.setCash": {
+          "2": [
+            554,
+            566
+          ]
+        },
+        "FakeCToken.underlying": {
+          "1": [
+            383,
+            405
+          ]
+        }
+      }
+    }
+  },
+  "dependencies": [],
+  "deployedBytecode": "6080604052348015600f57600080fd5b506004361060505760003560e01c80633b1d21a21460555780636f307dc314606c5780637158da7c1460905780637ac1141f1460a2578063961be3911460b4575b600080fd5b6000545b6040519081526020015b60405180910390f35b6001546001600160a01b03165b6040516001600160a01b0390911681526020016063565b6001546079906001600160a01b031681565b60b260ad36600460bc565b600055565b005b605960005481565b60006020828403121560cc578081fd5b503591905056fea264697066735822122075ffefc0c25aa73caf8eadea50e2b79762cda2a7ff2ba0286052200efb2e906c64736f6c63430008040033",
+  "deployedSourceMap": "102:473:44:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;418:79;460:7;486:4;418:79;;;563:25:51;;;551:2;536:18;418:79:44;;;;;;;;319:93;390:15;;-1:-1:-1;;;;;390:15:44;319:93;;;-1:-1:-1;;;;;373:32:51;;;355:51;;343:2;328:18;319:93:44;310:102:51;153:30:44;;;;;-1:-1:-1;;;;;153:30:44;;;503:70;;;;;;:::i;:::-;554:4;:12;503:70;;;128:19;;;;;;14:190:51;73:6;126:2;114:9;105:7;101:23;97:32;94:2;;;147:6;139;132:22;94:2;-1:-1:-1;175:23:51;;84:120;-1:-1:-1;84:120:51:o",
+  "language": "Solidity",
+  "natspec": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "offset": [
+    102,
+    575
+  ],
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH1 0x50 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x3B1D21A2 EQ PUSH1 0x55 JUMPI DUP1 PUSH4 0x6F307DC3 EQ PUSH1 0x6C JUMPI DUP1 PUSH4 0x7158DA7C EQ PUSH1 0x90 JUMPI DUP1 PUSH4 0x7AC1141F EQ PUSH1 0xA2 JUMPI DUP1 PUSH4 0x961BE391 EQ PUSH1 0xB4 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x0 SLOAD JUMPDEST PUSH1 0x40 MLOAD SWAP1 DUP2 MSTORE PUSH1 0x20 ADD JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH1 0x1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP2 AND DUP2 MSTORE PUSH1 0x20 ADD PUSH1 0x63 JUMP JUMPDEST PUSH1 0x1 SLOAD PUSH1 0x79 SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH1 0xB2 PUSH1 0xAD CALLDATASIZE PUSH1 0x4 PUSH1 0xBC JUMP JUMPDEST PUSH1 0x0 SSTORE JUMP JUMPDEST STOP JUMPDEST PUSH1 0x59 PUSH1 0x0 SLOAD DUP2 JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH1 0xCC JUMPI DUP1 DUP2 REVERT JUMPDEST POP CALLDATALOAD SWAP2 SWAP1 POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 PUSH22 0xFFEFC0C25AA73CAF8EADEA50E2B79762CDA2A7FF2BA0 0x28 PUSH1 0x52 KECCAK256 0xE 0xFB 0x2E SWAP1 PUSH13 0x64736F6C634300080400330000 ",
+  "pcMap": {
+    "0": {
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x80"
+    },
+    "2": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x40"
+    },
+    "4": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "MSTORE",
+      "path": "44"
+    },
+    "5": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "CALLVALUE",
+      "path": "44"
+    },
+    "6": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "DUP1",
+      "path": "44"
+    },
+    "7": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "ISZERO",
+      "path": "44"
+    },
+    "8": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0xF"
+    },
+    "10": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "JUMPI",
+      "path": "44"
+    },
+    "11": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x0"
+    },
+    "13": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "DUP1",
+      "path": "44"
+    },
+    "14": {
+      "dev": "Cannot send ether to nonpayable function",
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "REVERT",
+      "path": "44"
+    },
+    "15": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "16": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "POP",
+      "path": "44"
+    },
+    "17": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x4"
+    },
+    "19": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "CALLDATASIZE",
+      "path": "44"
+    },
+    "20": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "LT",
+      "path": "44"
+    },
+    "21": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x50"
+    },
+    "23": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "JUMPI",
+      "path": "44"
+    },
+    "24": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x0"
+    },
+    "26": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "CALLDATALOAD",
+      "path": "44"
+    },
+    "27": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0xE0"
+    },
+    "29": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "SHR",
+      "path": "44"
+    },
+    "30": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "DUP1",
+      "path": "44"
+    },
+    "31": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH4",
+      "path": "44",
+      "value": "0x3B1D21A2"
+    },
+    "36": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "EQ",
+      "path": "44"
+    },
+    "37": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x55"
+    },
+    "39": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "JUMPI",
+      "path": "44"
+    },
+    "40": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "DUP1",
+      "path": "44"
+    },
+    "41": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH4",
+      "path": "44",
+      "value": "0x6F307DC3"
+    },
+    "46": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "EQ",
+      "path": "44"
+    },
+    "47": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x6C"
+    },
+    "49": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "JUMPI",
+      "path": "44"
+    },
+    "50": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "DUP1",
+      "path": "44"
+    },
+    "51": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH4",
+      "path": "44",
+      "value": "0x7158DA7C"
+    },
+    "56": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "EQ",
+      "path": "44"
+    },
+    "57": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x90"
+    },
+    "59": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "JUMPI",
+      "path": "44"
+    },
+    "60": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "DUP1",
+      "path": "44"
+    },
+    "61": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH4",
+      "path": "44",
+      "value": "0x7AC1141F"
+    },
+    "66": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "EQ",
+      "path": "44"
+    },
+    "67": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0xA2"
+    },
+    "69": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "JUMPI",
+      "path": "44"
+    },
+    "70": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "DUP1",
+      "path": "44"
+    },
+    "71": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH4",
+      "path": "44",
+      "value": "0x961BE391"
+    },
+    "76": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "EQ",
+      "path": "44"
+    },
+    "77": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0xB4"
+    },
+    "79": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "JUMPI",
+      "path": "44"
+    },
+    "80": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "81": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x0"
+    },
+    "83": {
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "DUP1",
+      "path": "44"
+    },
+    "84": {
+      "first_revert": true,
+      "fn": null,
+      "offset": [
+        102,
+        575
+      ],
+      "op": "REVERT",
+      "path": "44"
+    },
+    "85": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "86": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        460,
+        467
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x0"
+    },
+    "88": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        486,
+        490
+      ],
+      "op": "SLOAD",
+      "path": "44",
+      "statement": 0
+    },
+    "89": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "90": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x40"
+    },
+    "92": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "MLOAD",
+      "path": "44"
+    },
+    "93": {
+      "op": "SWAP1"
+    },
+    "94": {
+      "op": "DUP2"
+    },
+    "95": {
+      "op": "MSTORE"
+    },
+    "96": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "98": {
+      "op": "ADD"
+    },
+    "99": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "100": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x40"
+    },
+    "102": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "MLOAD",
+      "path": "44"
+    },
+    "103": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "DUP1",
+      "path": "44"
+    },
+    "104": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "SWAP2",
+      "path": "44"
+    },
+    "105": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "SUB",
+      "path": "44"
+    },
+    "106": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "SWAP1",
+      "path": "44"
+    },
+    "107": {
+      "fn": "FakeCToken.getCash",
+      "offset": [
+        418,
+        497
+      ],
+      "op": "RETURN",
+      "path": "44"
+    },
+    "108": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        319,
+        412
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "109": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        390,
+        405
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "statement": 1,
+      "value": "0x1"
+    },
+    "111": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        390,
+        405
+      ],
+      "op": "SLOAD",
+      "path": "44"
+    },
+    "112": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "114": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "116": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "118": {
+      "op": "SHL"
+    },
+    "119": {
+      "op": "SUB"
+    },
+    "120": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        390,
+        405
+      ],
+      "op": "AND",
+      "path": "44"
+    },
+    "121": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        319,
+        412
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "122": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        319,
+        412
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x40"
+    },
+    "124": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        319,
+        412
+      ],
+      "op": "MLOAD",
+      "path": "44"
+    },
+    "125": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "127": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "129": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "131": {
+      "op": "SHL"
+    },
+    "132": {
+      "op": "SUB"
+    },
+    "133": {
+      "op": "SWAP1"
+    },
+    "134": {
+      "op": "SWAP2"
+    },
+    "135": {
+      "op": "AND"
+    },
+    "136": {
+      "op": "DUP2"
+    },
+    "137": {
+      "op": "MSTORE"
+    },
+    "138": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "140": {
+      "op": "ADD"
+    },
+    "141": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        319,
+        412
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x63"
+    },
+    "143": {
+      "op": "JUMP"
+    },
+    "144": {
+      "offset": [
+        153,
+        183
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "145": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        153,
+        183
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x1"
+    },
+    "147": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        153,
+        183
+      ],
+      "op": "SLOAD",
+      "path": "44"
+    },
+    "148": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        153,
+        183
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x79"
+    },
+    "150": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        153,
+        183
+      ],
+      "op": "SWAP1",
+      "path": "44"
+    },
+    "151": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "153": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "155": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "157": {
+      "op": "SHL"
+    },
+    "158": {
+      "op": "SUB"
+    },
+    "159": {
+      "offset": [
+        153,
+        183
+      ],
+      "op": "AND",
+      "path": "44"
+    },
+    "160": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        153,
+        183
+      ],
+      "op": "DUP2",
+      "path": "44"
+    },
+    "161": {
+      "fn": "FakeCToken.underlying",
+      "offset": [
+        153,
+        183
+      ],
+      "op": "JUMP",
+      "path": "44"
+    },
+    "162": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "163": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0xB2"
+    },
+    "165": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0xAD"
+    },
+    "167": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "CALLDATASIZE",
+      "path": "44"
+    },
+    "168": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x4"
+    },
+    "170": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0xBC"
+    },
+    "172": {
+      "fn": "FakeCToken.setCash",
+      "jump": "i",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "JUMP",
+      "path": "44"
+    },
+    "173": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "174": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        554,
+        558
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "statement": 2,
+      "value": "0x0"
+    },
+    "176": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        554,
+        566
+      ],
+      "op": "SSTORE",
+      "path": "44"
+    },
+    "177": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "JUMP",
+      "path": "44"
+    },
+    "178": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "179": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        503,
+        573
+      ],
+      "op": "STOP",
+      "path": "44"
+    },
+    "180": {
+      "offset": [
+        128,
+        147
+      ],
+      "op": "JUMPDEST",
+      "path": "44"
+    },
+    "181": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        128,
+        147
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x59"
+    },
+    "183": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        128,
+        147
+      ],
+      "op": "PUSH1",
+      "path": "44",
+      "value": "0x0"
+    },
+    "185": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        128,
+        147
+      ],
+      "op": "SLOAD",
+      "path": "44"
+    },
+    "186": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        128,
+        147
+      ],
+      "op": "DUP2",
+      "path": "44"
+    },
+    "187": {
+      "fn": "FakeCToken.setCash",
+      "offset": [
+        128,
+        147
+      ],
+      "op": "JUMP",
+      "path": "44"
+    },
+    "188": {
+      "op": "JUMPDEST"
+    },
+    "189": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "191": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "193": {
+      "op": "DUP3"
+    },
+    "194": {
+      "op": "DUP5"
+    },
+    "195": {
+      "op": "SUB"
+    },
+    "196": {
+      "op": "SLT"
+    },
+    "197": {
+      "op": "ISZERO"
+    },
+    "198": {
+      "op": "PUSH1",
+      "value": "0xCC"
+    },
+    "200": {
+      "op": "JUMPI"
+    },
+    "201": {
+      "op": "DUP1"
+    },
+    "202": {
+      "op": "DUP2"
+    },
+    "203": {
+      "op": "REVERT"
+    },
+    "204": {
+      "op": "JUMPDEST"
+    },
+    "205": {
+      "op": "POP"
+    },
+    "206": {
+      "op": "CALLDATALOAD"
+    },
+    "207": {
+      "op": "SWAP2"
+    },
+    "208": {
+      "op": "SWAP1"
+    },
+    "209": {
+      "op": "POP"
+    },
+    "210": {
+      "jump": "o",
+      "op": "JUMP"
+    }
+  },
+  "sha1": "9110b72ea6d439c5f914dcab4538dccbc0d69aaf",
+  "source": "// SPDX-License-Identifier: BUSL-1.1\npragma solidity =0.8.4;\n\nimport \"../Interfaces/Interfaces.sol\";\n\ncontract FakeCToken {\n    uint256 public cash;\n    address public underlyingAsset;\n\n    constructor(address _underlying, uint256 _cash) public {\n        underlyingAsset = _underlying;\n        cash = _cash;\n    }\n\n    function underlying() external view returns (address) {\n        return underlyingAsset;\n    }\n\n    function getCash() external view returns (uint256) {\n        return cash;\n    }\n\n    function setCash(uint256 _cash) external {\n        cash = _cash;\n    }\n}\n",
+  "sourceMap": "102:473:44:-:0;;;190:123;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;255:15;:29;;-1:-1:-1;;;;;;255:29:44;-1:-1:-1;;;;;255:29:44;;;;;;;;;;;-1:-1:-1;294:12:44;102:473;;14:371:51;93:6;101;154:2;142:9;133:7;129:23;125:32;122:2;;;175:6;167;160:22;122:2;206:16;;-1:-1:-1;;;;;251:31:51;;241:42;;231:2;;302:6;294;287:22;231:2;375;360:18;;;;354:25;330:5;;354:25;;-1:-1:-1;;;112:273:51:o;:::-;102:473:44;;;;;;",
+  "sourcePath": "contracts/Twap/TestContracts/FakeCToken.sol",
+  "type": "contract"
+}
