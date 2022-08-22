@@ -239,6 +239,12 @@ interface ITournamentManager {
         bool hasClaimed;
         bool exists;
     }
+    struct Referral {
+        uint256 referrerCommission;
+        uint256 discountedTicketCost;
+        uint256 maxReferralsAllowed;
+        uint256 referralCount;
+    }
     struct Tournament {
         string name;
         uint256 start;
@@ -299,7 +305,8 @@ interface ITournamentManager {
         uint256 ticketTokenIndex,
         uint256 playTokenMintAmount,
         uint256[] memory rewardAmount,
-        uint256 rewardTokenIndex
+        uint256 rewardTokenIndex,
+        Referral memory referralData
     ) external returns (uint256);
 
     function addNewUnderlyingAsset(Asset memory newAsset) external;

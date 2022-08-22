@@ -22,6 +22,9 @@ contract TournamentManager is ERC1155("sample_uri"), Ownable, AccessControl {
     bytes32 public constant LIQUIDITY_POOL_ROLE =
         keccak256("LIQUIDITY_POOL_ROLE");
 
+    mapping(address => bool) public referrerWhiteist;
+    mapping(uint256 => ITournamentManager.Referral)
+        public tournamentReferralData;
     mapping(bytes32 => ITournamentManager.Rank) public tournamentUserRank;
     mapping(uint256 => mapping(uint256 => uint256))
         public tournamentUserPlayTokenBalance;
@@ -39,6 +42,9 @@ contract TournamentManager is ERC1155("sample_uri"), Ownable, AccessControl {
     event CreateTournament(uint256 tournamentId, string name);
     event AddUnderlyingAsset(string name);
     event AddTradableAsset(string name);
+
+    event AddNewReferrers();
+    event RemoveReferrers();
 
     constructor(address _ticketFeeReceipient) public {
         ticketFeeReceipient = _ticketFeeReceipient;
@@ -195,7 +201,8 @@ contract TournamentManager is ERC1155("sample_uri"), Ownable, AccessControl {
         uint256 ticketTokenIndex,
         uint256 playTokenMintAmount,
         uint256[] memory rewardAmount,
-        uint256 rewardTokenIndex
+        uint256 rewardTokenIndex,
+        ITournamentManager.Referral memory referralData
     ) external onlyOwner returns (uint256) {
         ITournamentManager.Tournament storage newTournament = tournaments[
             nextTournamentId
@@ -208,6 +215,7 @@ contract TournamentManager is ERC1155("sample_uri"), Ownable, AccessControl {
         newTournament.ticketToken = tradableAssets[ticketTokenIndex];
         newTournament.rewardToken = tradableAssets[rewardTokenIndex];
         newTournament.playTokenMintAmount = playTokenMintAmount;
+        tournamentReferralData[nextTournamentId] = referralData;
 
         for (uint256 i = 0; i < rewardAmount.length; i++) {
             tournamentRewardAmounts[nextTournamentId].push(rewardAmount[i]);
@@ -238,6 +246,26 @@ contract TournamentManager is ERC1155("sample_uri"), Ownable, AccessControl {
     {
         tradableAssets.push(newAsset);
         emit AddTradableAsset(newAsset.name);
+    }
+
+    function bulkAddReferrers(address[] memory newReferrers)
+        external
+        onlyOwner
+    {
+        for (uint256 i = 0; i < newReferrers.length; i++) {
+            referrerWhiteist[newReferrers[i]] = true;
+        }
+        emit AddNewReferrers();
+    }
+
+    function bulkRemoveReferrers(address[] memory referrersToRemove)
+        external
+        onlyOwner
+    {
+        for (uint256 i = 0; i < referrersToRemove.length; i++) {
+            referrerWhiteist[referrersToRemove[i]] = false;
+        }
+        emit RemoveReferrers();
     }
 
     /************************************************
@@ -336,12 +364,16 @@ contract TournamentManager is ERC1155("sample_uri"), Ownable, AccessControl {
         return 18;
     }
 
-    function buyTicket(uint256 tournamentId) external {
+    function buyTicket(uint256 tournamentId, address referrer) external {
+        // Requires user approval
+
         address user = msg.sender;
         ITournamentManager.Tournament storage tournament = tournaments[
             tournamentId
         ];
         IERC20 ticketToken = tournament.ticketToken.token;
+        uint256 amountToPay = tournament.ticketCost;
+
         require(
             ((block.timestamp < tournament.close) &&
                 (block.timestamp > tournament.start)),
@@ -352,12 +384,35 @@ contract TournamentManager is ERC1155("sample_uri"), Ownable, AccessControl {
             "Insufficient balance to buy"
         );
 
-        // Approve before this
-        ticketToken.transferFrom(
-            user,
-            ticketFeeReceipient,
-            tournament.ticketCost
-        );
+        if (
+            referrer != address(0) &&
+            referrer != msg.sender &&
+            tournamentReferralData[tournamentId].referralCount <
+            tournamentReferralData[tournamentId].maxReferralsAllowed &&
+            referrerWhiteist[referrer] == true
+        ) {
+            ticketToken.transferFrom(
+                user,
+                address(this),
+                tournamentReferralData[tournamentId].discountedTicketCost
+            );
+
+            amountToPay =
+                tournamentReferralData[tournamentId].discountedTicketCost -
+                tournamentReferralData[tournamentId].referrerCommission;
+            tournamentReferralData[tournamentId].referralCount += 1;
+            ticketToken.transfer(
+                referrer,
+                tournamentReferralData[tournamentId].referrerCommission
+            );
+        } else {
+            bool success = ticketToken.transferFrom(
+                user,
+                address(this),
+                amountToPay
+            );
+        }
+        ticketToken.transfer(ticketFeeReceipient, amountToPay);
 
         if (!tournamentUsers[tournamentId][user]) {
             tournamentUsers[tournamentId][user] = true;

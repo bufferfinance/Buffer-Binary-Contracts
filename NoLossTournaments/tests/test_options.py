@@ -57,7 +57,7 @@ class NoLossTournaments(object):
 
     def buy_ticket(self):
         tournament = self.tournamentManager.tournaments(self.tournamentId)
-
+        ref = self.accounts[randrange(10)]
         self.ticketToken.transfer(
             self.user, tournament[3], {"from": brownie.accounts[0]}
         )
@@ -65,21 +65,57 @@ class NoLossTournaments(object):
             self.tournamentManager.address, tournament[3], {"from": self.user}
         )
         initialTicketTokenBalanceUser = self.ticketToken.balanceOf(self.user)
+        initialTicketTokenBalanceRef = self.ticketToken.balanceOf(ref)
         initialTicketTokenBalanceTicketFeeReceipient = self.ticketToken.balanceOf(
             self.tournamentManager.ticketFeeReceipient()
         )
-        buy = self.tournamentManager.buyTicket(self.tournamentId, {"from": self.user})
+        ref_data = self.tournamentManager.tournamentReferralData(
+            self.tournamentId)
+        is_ref_applicable = ref_data[3] < ref_data[2]
+
+        buy = self.tournamentManager.buyTicket(
+            self.tournamentId, ref, {"from": self.user}
+        )
         finalTicketTokenBalanceUser = self.ticketToken.balanceOf(self.user)
+        finalTicketTokenBalanceRef = self.ticketToken.balanceOf(ref)
         finalTicketTokenBalanceTicketFeeReceipient = self.ticketToken.balanceOf(
             self.tournamentManager.ticketFeeReceipient()
         )
-        assert (
-            finalTicketTokenBalanceTicketFeeReceipient
-            - initialTicketTokenBalanceTicketFeeReceipient
-            == tournament[3]
-            and initialTicketTokenBalanceUser - finalTicketTokenBalanceUser
-            == tournament[3]
-        ), "Wrong ticket token balance"
+        if (
+            self.user != ref
+            and self.tournamentManager.referrerWhiteist(ref)
+            and is_ref_applicable
+        ):
+
+            print(f"{Fore.GREEN}Bought with ref {ref}{Style.RESET_ALL}")
+            assert (
+                initialTicketTokenBalanceUser - finalTicketTokenBalanceUser
+                == ref_data[1]
+            ), "Wrong ticket token balance of user"
+
+            assert (
+                finalTicketTokenBalanceTicketFeeReceipient
+                - initialTicketTokenBalanceTicketFeeReceipient
+                == ref_data[1] - ref_data[0]
+            ), "Wrong ticket token balance of TicketFeeReceipient"
+
+            assert (
+                finalTicketTokenBalanceRef -
+                initialTicketTokenBalanceRef == ref_data[0]
+            ), "Wrong ticket token balance of ref"
+
+        else:
+            print(f"{Fore.GREEN}No referral{Style.RESET_ALL}")
+
+            if not is_ref_applicable:
+                print(f"{Fore.RED}Ref limit exceeded{Style.RESET_ALL}")
+            assert (
+                finalTicketTokenBalanceTicketFeeReceipient
+                - initialTicketTokenBalanceTicketFeeReceipient
+                == tournament[3]
+                and initialTicketTokenBalanceUser - finalTicketTokenBalanceUser
+                == tournament[3]
+            ), "Wrong ticket token balance"
 
     def buy_option(self, user, isYes, isAbove, fee):
 
@@ -90,10 +126,12 @@ class NoLossTournaments(object):
             self.binary_pool_atm.address, self.tournamentId
         )
         print(
-            "Buying option with ", _amount(initialPlayTokenBalance), "for", _amount(fee)
+            "Buying option with ", _amount(
+                initialPlayTokenBalance), "for", _amount(fee)
         )
         option_id = self.binary_european_options_atm.create(
-            fee, self.period, isYes, isAbove, user, self.tournamentId, {"from": user}
+            fee, self.period, isYes, isAbove, user, self.tournamentId, {
+                "from": user}
         ).return_value
         (
             _,
@@ -136,7 +174,8 @@ class NoLossTournaments(object):
         initialRewardTokenBalanceManager = rewardToken.balanceOf(
             self.tournamentManager.address
         )
-        claim_rewards = self.tournamentManager.claimReward(tournamentId, {"from": user})
+        claim_rewards = self.tournamentManager.claimReward(
+            tournamentId, {"from": user})
         finalRewardTokenBalanceUser = rewardToken.balanceOf(user)
         finalRewardTokenBalanceManager = rewardToken.balanceOf(
             self.tournamentManager.address
@@ -169,7 +208,8 @@ class NoLossTournaments(object):
         if self.chain.time() < expiration:
             factor = uniform(0, 2)
             print(factor)
-            self.pp.update(int(self.current_price * factor), {"from": self.accounts[0]})
+            self.pp.update(int(self.current_price * factor),
+                           {"from": self.accounts[0]})
             self.chain.sleep(expiration - self.chain.time() + 2)
         self.current_price = self.pp.getUsdPrice()
         self.chain.sleep(expiration - self.chain.time() + 1)
@@ -222,7 +262,8 @@ class NoLossTournaments(object):
         for user in self.users:
             self.user = user
             self.buy_ticket()
-            playTokenBalance = self.tournamentManager.balanceOf(user, self.tournamentId)
+            playTokenBalance = self.tournamentManager.balanceOf(
+                user, self.tournamentId)
             option_id = self.buy_option(
                 user, True, True, int(playTokenBalance * uniform(0, 1))
             )
@@ -291,6 +332,13 @@ def test_Options(contracts, accounts, chain):
         ),
         {"from": accounts[0]},
     )
+    ref_accounts = [accounts[6], accounts[8], accounts[9], accounts[7]]
+    print("ref_accounts", ref_accounts)
+    # bulk add referrals
+    tournamentManager.bulkAddReferrers(
+        ref_accounts,
+        {"from": accounts[0]},
+    )
     for i in range(1):
         print(tournamentManager.underlyingAssets(i))
     for i in range(2):
@@ -312,6 +360,7 @@ def test_Options(contracts, accounts, chain):
             5000e18,
             rewards,
             1,
+            (500e18, 0.5e18, 5, 0),
             {"from": accounts[4]},
         )
     # tournaments
@@ -326,6 +375,7 @@ def test_Options(contracts, accounts, chain):
             5000e18,
             rewards,
             1,
+            (0.1e18, 0.5e18, 1, 0),
         )
 
         print(f"{Fore.YELLOW}Tournament {tournament.return_value}{Style.RESET_ALL}")
@@ -344,6 +394,12 @@ def test_Options(contracts, accounts, chain):
         )
         nlt.run_tournamnet()
         chain.sleep(3600)
+
+    # bulk remove referrals
+    tournamentManager.bulkRemoveReferrers(
+        ref_accounts,
+        {"from": accounts[0]},
+    )
 
     for id in range(tournament.return_value + 1):
         print(f"{Fore.MAGENTA}Winners for tournament {id} {Style.RESET_ALL}")
